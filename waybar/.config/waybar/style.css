@@ -155,7 +155,7 @@ button:hover {
 }
 
 #power-profiles-daemon {
-    padding-right: 15px;
+    padding-right: 1em;
 }
 
 #power-profiles-daemon.performance {
@@ -164,11 +164,13 @@ button:hover {
 }
 
 #power-profiles-daemon.balanced {
+    padding-right: 1.4em;
     background-color: #2980b9;
     color: #ffffff;
 }
 
 #power-profiles-daemon.power-saver {
+    padding-right: 1.2em;
     background-color: #2ecc71;
     color: #000000;
 }

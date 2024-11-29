@@ -7,7 +7,6 @@
     "spacing": 0, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": [
-        "power-profiles-daemon",
         "hyprland/workspaces",
         "hyprland/mode",
         "hyprland/scratchpad",
@@ -29,6 +28,7 @@
         // "keyboard-state",
         "battery",
         "battery#bat2",
+        "power-profiles-daemon",
         "clock",
         "custom/power"
     ],
@@ -223,7 +223,7 @@
         // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
     },
     "custom/power": {
-        "format": "⏻ ",
+        "format": "⏻  ",
         "tooltip": false,
         "menu": "on-click",
         "menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
