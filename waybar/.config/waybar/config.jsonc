@@ -17,6 +17,7 @@
         "hyprland/window"
     ],
     "modules-right": [
+        "tray",
         "mpd",
         // "idle_inhibitor",
         "pulseaudio",
@@ -28,7 +29,6 @@
         // "keyboard-state",
         "battery",
         "battery#bat2",
-        "tray",
         "clock",
         "custom/power"
     ],
