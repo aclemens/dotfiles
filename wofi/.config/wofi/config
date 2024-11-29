@@ -1,0 +1,11 @@
+show=drun
+gtk_dark=true
+prompt=Search for an application
+allow_images=true
+image_size=48
+columns=1
+insensitive=true
+width=50%
+height=50%
+hide_scroll=true
+no_actions=true
