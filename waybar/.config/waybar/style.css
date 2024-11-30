@@ -103,8 +103,10 @@ button:hover {
     background-color: #cccccc;
 }
 
+/* 
 #window,
 #workspaces {}
+ */
 
 /* If workspaces is the leftmost module, omit left margin */
 .modules-left>widget:first-child>#workspaces {
