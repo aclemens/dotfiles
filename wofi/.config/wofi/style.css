@@ -13,4 +13,9 @@ window {
 
 #inner-box {
     margin: 10px;
+    font-size: 1.1em;
+}
+
+#img {
+    margin-right: 1em;
 }
