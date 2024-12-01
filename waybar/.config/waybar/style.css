@@ -205,7 +205,8 @@ label:focus {
     background-color: #f53c3c;
 }
 
-/* #pulseaudio {
+/*
+#pulseaudio {
     background-color: #f1c40f;
     color: #000000;
 }
@@ -213,7 +214,8 @@ label:focus {
 #pulseaudio.muted {
     background-color: #90b1b1;
     color: #2a5c45;
-} */
+}
+*/
 
 #wireplumber {
     background-color: #fff0f5;
