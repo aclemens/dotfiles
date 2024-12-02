@@ -1,41 +1,41 @@
+@define-color module-foreground #333333;
+@define-color module-background #cccccc;
+@define-color waybar-background rgba(0, 0, 0, 0.8);
+
+
+
 * {
     /* `otf-font-awesome` is required to be installed for icons */
     font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
     font-size: 14px;
     font-weight: bold;
-    border-radius: 12px;
-    color: #cccccc;
 }
 
 window#waybar {
-    color: #cccccc;
-    background-color: rgba(0, 0, 0, 0.8);
     border-radius: 0;
     transition-property: background-color;
     transition-duration: .5s;
-}
-
-window#waybar.hidden {
-    opacity: 0.2;
+    background-color: @waybar-background;
 }
 
 /*
+window#waybar.hidden {
+    opacity: 0.2;
+}
 window#waybar.empty {
     background-color: transparent;
 }
 window#waybar.solo {
     background-color: #FFFFFF;
 }
-*/
-
 window#waybar.termite {
     background-color: #3F3F3F;
 }
-
 window#waybar.chromium {
     background-color: #000000;
     border: none;
 }
+*/
 
 button {
     /* Use box-shadow instead of border so the text isn't offset */
@@ -58,8 +58,7 @@ button:hover {
 
 #workspaces button {
     padding: 0 5px;
-    background-color: transparent;
-    color: #ffffff;
+    color: @module-foreground;
 }
 
 #workspaces button:hover {
@@ -67,7 +66,9 @@ button:hover {
 }
 
 #workspaces button.focused {
+    font-weight: bolder;
     background-color: #64727D;
+    background: rgba(0, 0, 0, 0.2);
     box-shadow: inset 0 -3px #ffffff;
 }
 
@@ -80,7 +81,7 @@ button:hover {
     box-shadow: inset 0 -3px #ffffff;
 }
 
-#clock,
+#workspaces,
 #battery,
 #cpu,
 #memory,
@@ -97,16 +98,17 @@ button:hover {
 #scratchpad,
 #power-profiles-daemon,
 #mpd {
-    margin: 8px 4px;
+    margin: 8px 0;
     padding: 0em 1em;
-    color: #222222;
-    background-color: #cccccc;
+    border-radius: 12px;
+    color: @module-foreground;
+    background-color: @module-background;
 }
 
-/* 
 #window,
-#workspaces {}
- */
+#workspaces {
+    color: @module-background;
+}
 
 /* If workspaces is the leftmost module, omit left margin */
 .modules-left>widget:first-child>#workspaces {
@@ -119,9 +121,9 @@ button:hover {
 }
 
 #clock {
-    color: #cccccc;
-    padding-top: 0.2em;
-    background-color: transparent;
+    margin: 0 1.5em;
+    margin-top: 0.15em;
+    color: @module-background;
 }
 
 /*
@@ -326,4 +328,9 @@ label:focus {
 
 #privacy-item.audio-out {
     background-color: #0069d4;
+}
+
+#custom-power {
+    font-size: 1.3em;
+    color: @module-background;
 }
