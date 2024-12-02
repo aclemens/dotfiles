@@ -121,7 +121,7 @@ button:hover {
 }
 
 #clock {
-    margin: 0 1.5em;
+    margin: 0 0.7em;
     margin-top: 0.15em;
     color: @module-background;
 }
