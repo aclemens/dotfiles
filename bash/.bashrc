@@ -24,6 +24,7 @@ alias grep='grep --color=auto'
 alias fvim='vim $(fzf --preview="bat --color=always {}")'
 alias stow='stow -t $HOME'
 
+# set default editor to VIM
 EDITOR=vim
 
 # Set up fzf key bindings and fuzzy completion
