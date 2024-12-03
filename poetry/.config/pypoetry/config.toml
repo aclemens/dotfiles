@@ -1,0 +1,3 @@
+cache-dir = "/mnt/data/.cache"
+[virtualenvs]
+path = "/mnt/data/virtualenvs"
