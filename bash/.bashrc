@@ -30,6 +30,9 @@ EDITOR=vim
 # Set up fzf key bindings and fuzzy completion
 eval "$(fzf --bash)"
 
+# setup zoxide
+eval "$(zoxide init bash)"
+
 PS1='[\u@\h \W]\$ '
 
 fastfetch
