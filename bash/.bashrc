@@ -17,7 +17,8 @@ HISTSIZE=1000
 HISTFILESIZE=2000
 
 # alias definitions
-alias ls='ls --color=auto'
+alias ls='eza --header --git'
+#alias ls='ls --color=auto'
 alias la='ls -a'
 alias ll='la -l'
 alias grep='grep --color=auto'
