@@ -29,13 +29,16 @@ alias cat='bat'
 # set default editor to VIM
 EDITOR=vim
 
-# Set up fzf key bindings and fuzzy completion
+PS1='[\u@\h \W]\$ '
+
+# set up fzf key bindings and fuzzy completion
 eval "$(fzf --bash)"
 
-# setup zoxide
-eval "$(zoxide init bash)"
+# set up starship integration
+eval "$(starship init bash)"
 
-PS1='[\u@\h \W]\$ '
+# set up zoxide
+eval "$(zoxide init bash)"
 
 fastfetch
 
