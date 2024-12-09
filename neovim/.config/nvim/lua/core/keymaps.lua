@@ -17,6 +17,6 @@ keymap.set('n', '<leader>sx', '<cmd>close<CR>') -- close current
 keymap.set('n', '<leader>to', '<cmd>tabnew<CR>') -- open tab
 keymap.set('n', '<leader>tx', '<cmd>tabclose<CR>') -- close tab
 keymap.set('n', '<leader>tp', '<cmd>tabp<CR>') -- previous tab
-keymap.set('n', '<leader>tx', '<cmd>tabn<CR>') -- next tab
+keymap.set('n', '<leader>tn', '<cmd>tabn<CR>') -- next tab
 keymap.set('n', '<leader>tf', '<cmd>tabnew %<CR>') -- open current buffer in new tab
 
