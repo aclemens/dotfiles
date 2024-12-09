@@ -27,6 +27,7 @@ alias stow='stow -t $HOME'
 alias cat='bat'
 alias vim='nvim'
 
+alias lg='lazygit'
 alias gst='git status'
 
 # set default editor to VIM

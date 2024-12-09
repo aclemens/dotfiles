@@ -11,10 +11,11 @@ sudo yay -S --needed
     hyprland
     hyprlock
     hyprpaper
+    hyprpicker
     kitty
+    lazygit
     starship
     vim
     waybar
     wofi
-    hyprpicker
 ```
