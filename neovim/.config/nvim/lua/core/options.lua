@@ -22,3 +22,6 @@ vim.opt.smartcase = true
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- clipboard
+vim.opt.clipboard:append("unnamedplus") -- use system clipboard
+
