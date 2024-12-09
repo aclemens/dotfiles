@@ -21,6 +21,8 @@ alias ls='eza --header --git'
 #alias ls='ls --color=auto'
 alias la='ls -a'
 alias ll='la -l'
+alias tree='ls --tree'
+
 alias grep='grep --color=auto'
 alias fvim='vim $(fzf --preview="bat --color=always {}")'
 alias stow='stow -t $HOME'
