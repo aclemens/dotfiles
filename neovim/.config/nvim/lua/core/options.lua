@@ -8,6 +8,7 @@ vim.opt.shiftround = true
 vim.opt.laststatus = 2
 vim.opt.number = true
 vim.opt.relativenumber = true
+vim.opt.cursorline = true
 
 -- file handling
 vim.opt.autoread = true
