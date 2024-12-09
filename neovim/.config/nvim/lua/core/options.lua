@@ -1,31 +1,33 @@
+local opt = vim.opt -- for conciseness
+
 -- tabs and indentations
-vim.opt.expandtab = true
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.shiftround = true
+opt.expandtab = true
+opt.tabstop = 2
+opt.shiftwidth = 2
+opt.shiftround = true
 
 -- ui and layout
-vim.opt.laststatus = 2
-vim.opt.number = true
-vim.opt.relativenumber = true
-vim.opt.cursorline = true
+opt.laststatus = 2
+opt.number = true
+opt.relativenumber = true
+opt.cursorline = true
 
 -- file handling
-vim.opt.autoread = true
-vim.opt.autowrite = true
+opt.autoread = true
+opt.autowrite = true
 
 -- search settings
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
+opt.ignorecase = true
+opt.smartcase = true
+
+-- clipboard
+opt.clipboard:append("unnamedplus") -- use system clipboard
+
+-- split windows
+opt.splitright = true
+opt.splitbelow = true
 
 -- map leader to SPACE
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
-
--- clipboard
-vim.opt.clipboard:append("unnamedplus") -- use system clipboard
-
--- split windows
-vim.opt.splitright = true
-vim.opt.splitbelow = true
 
