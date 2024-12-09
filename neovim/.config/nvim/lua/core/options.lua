@@ -27,7 +27,3 @@ opt.clipboard:append("unnamedplus") -- use system clipboard
 opt.splitright = true
 opt.splitbelow = true
 
--- map leader to SPACE
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
-
