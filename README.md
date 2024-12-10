@@ -10,7 +10,7 @@ The following documentation will guide you through the installation process.
 
 ## Packages
 
-The following packages are required to be installed on your system, regardless of the package that you install with `stow`.
+The following packages are required to be installed on your system, in order to use all the provided dotfiles.
 
 ```bash
 sudo pacman -Sy --needed yay
@@ -36,3 +36,29 @@ sudo yay -S --needed
     waybar
     wofi
 ```
+
+## Adding dotfiles
+
+In order to use the dotfiles provided in this repository, you need to clone the repository and use `stow` to symlink the files to your home directory.
+
+```bash
+git clone https://github.com/aclemens/dotfiles.git
+```
+
+# Configuration
+
+In order to apply a package from the dotfiles, you need to use `stow` to symlink the files to your home directory.
+
+```bash
+cd dotfiles
+stow <package>
+```
+
+If you want to install the nvim configuration for example, you would run the following command:
+
+```bash
+cd dotfiles
+stow neovim
+```
+
+This will link all the files in the `neovim` directory to your home directory.
