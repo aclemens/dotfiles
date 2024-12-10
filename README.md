@@ -2,13 +2,11 @@
 
 The following documentation will guide you through the installation process.
 
-All the necessary packages are listed below (I use Arch, btw...!).
-
-Further documentation can be found here:
-
-- [Arch Wiki](https://wiki.archlinux.org/)
-- [Stow](https://www.gnu.org/software/stow/)
-- [neovim](https://neovim.io/)
+- [Arch Wiki](https://wiki.archlinux.org/) - The linux distribution that I use (btw...!)
+- [Stow](https://www.gnu.org/software/stow/) - A package manager to handle dotfiles configurations.
+- [starship](https://starship.rs/) - The prompt that I use in my terminal.
+- [kitty](https://sw.kovidgoyal.net/kitty/) - The terminal emulator that I use.
+- [neovim](https://neovim.io/) - The text editor that I use.
 
 ## Packages
 
