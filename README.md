@@ -16,6 +16,7 @@ The following packages are required to be installed on your system, if you want 
 
 ```bash
 sudo pacman -Syy --needed \
+    bat \
     eza \
     fastfetch \
     fd \
@@ -38,6 +39,7 @@ sudo pacman -Syy --needed \
     vim \
     waybar \
     wofi \
+
 ```
 
 ## Adding dotfiles
