@@ -17,6 +17,7 @@ sudo pacman -Sy --needed yay
 sudo yay -S --needed
     eza
     fastfetch
+    fd
     git
     htop
     hyprland
@@ -29,6 +30,7 @@ sudo yay -S --needed
     npm
     python-black
     python-isort
+    ripgrep
     starship
     stow
     stylua
