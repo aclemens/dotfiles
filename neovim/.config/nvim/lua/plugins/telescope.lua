@@ -8,6 +8,32 @@ return {
   },
 
   config = function()
+    local telescope = require("telescope")
+    telescope.setup({
+      defaults = {
+        vimgrep_arguments = {
+          "rg",
+          "--color=never",
+          "--no-heading",
+          "--with-filename",
+          "--line-number",
+          "--column",
+          "--smart-case",
+          "--hidden", -- Include hidden files
+          "--glob=!.git/*", -- Optional: Exclude .git folder
+        },
+        hidden = true,
+      },
+      pickers = {
+        find_files = {
+          hidden = true,
+        },
+        live_grep = {
+          hidden = true,
+        },
+      },
+    })
+
     local builtin = require("telescope.builtin")
 
     vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
