@@ -1,7 +1,7 @@
 return {
   "nvim-lualine/lualine.nvim",
   dependencies = {
-    "ellisonleao/gruvbox.nvim",
+    "folke/tokyonight.nvim",
     "nvim-tree/nvim-web-devicons",
   },
 
@@ -9,7 +9,7 @@ return {
     require("lualine").setup({
       options = {
         icons_enabled = true,
-        theme = "gruvbox",
+        theme = "tokyonight",
       },
     })
   end,
