@@ -1,14 +1,13 @@
-@define-color module-foreground #AAAAAA;
-@define-color module-background transparent;
-@define-color waybar-background #1E1E1E;
-
 * {
   /* `otf-font-awesome` is required to be installed for icons */
   font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
   font-size: 14px;
   font-weight: bold;
-  color: @module-foreground;
-  background-color: @waybar-background;
+  color: #aaaaaa;
+}
+
+window#waybar {
+  background-color: rgba(30, 30, 30, 0.9);
 }
 
 window#waybar > box {
