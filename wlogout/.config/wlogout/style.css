@@ -22,6 +22,7 @@ button {
 button:focus,
 button:active,
 button:hover {
+  background-size: 30%;
   background-color: rgba(0, 38, 51, 1);
   outline-style: none;
 }
