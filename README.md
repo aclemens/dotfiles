@@ -12,35 +12,7 @@ For further information, please refer to the following links:
 
 ## Packages
 
-The following packages are required to be installed on your system, if you want to use all the provided dotfile packages.
-
-```bash
-sudo pacman -Syy --needed \
-    bat \
-    eza \
-    fastfetch \
-    fd \
-    git \
-    htop \
-    hyprland \
-    hyprlock \
-    hyprpaper \
-    hyprpicker \
-    kitty \
-    lazygit \
-    neovim \
-    npm \
-    python-black \
-    python-isort \
-    ripgrep \
-    starship \
-    stow \
-    stylua \
-    vim \
-    waybar \
-    wofi \
-
-```
+Install all the required packages on your system by running the `installation.sh` script.
 
 ## Adding dotfiles
 
