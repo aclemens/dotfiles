@@ -1,83 +1,51 @@
-/* Importing pywal colors */
-
-@import "colors-waybar.css";
+* {
+  background-image: none;
+  box-shadow: none;
+}
 
 window {
-  /* font-family: Fira Code Medium; */
-  font-size: 1.5em;
-  color: #cdd6f4;
-  background-color: rgba(23, 39, 41, 1);
+  font-size: 1.25em;
+  background-color: rgba(12, 12, 12, 0.9);
 }
 
 button {
+  border-radius: 20px;
+  border: 2px solid #33ccff;
+  text-decoration-color: #ffffff;
+  color: #ffffff;
+  background-color: #1e1e1e;
   background-repeat: no-repeat;
   background-position: center;
   background-size: 20%;
-  background-size: 0%;
-  background-color: rgba(45, 45, 60, 0.6);
-  /* border: 2px solid rgba(200, 220, 255, 0.2); */
-  /* border-radius: 12px; */
-  /* color: #cdd6f4; */
-  /* transition: */
-  /*   background-color 0.3s, */
-  /*   border 0.3s, */
-  /*   color 0.3s; */
 }
 
-/*
-button:focus {
-  background-size: 25%;
-  border: 2px solid rgba(200, 220, 255, 0.4);
-}
-
+button:focus,
+button:active,
 button:hover {
-  background-color: rgba(145, 215, 227, 0.2);
-  color: #1e1e2e;
-}
-
-button span {
-  font-size: 1.2em;
+  background-color: rgba(0, 38, 51, 1);
+  outline-style: none;
 }
 
 #lock {
-  background-image: url("./icons/lock.png");
-}
-#lock:hover {
-  background-image: url("./icons/lock-hover.png");
+  background-image: image(url("icons/lock.svg"));
 }
 
 #logout {
-  background-image: url("./icons/logout.png");
-}
-#logout:hover {
-  background-image: url("./icons/logout-hover.png");
+  background-image: image(url("icons/logout.svg"));
 }
 
 #suspend {
-  background-image: url("./icons/sleep.png");
-}
-#suspend:hover {
-  background-image: url("./icons/sleep-hover.png");
-}
-
-#shutdown {
-  background-image: url("./icons/power.png");
-}
-#shutdown:hover {
-  background-image: url("./icons/power-hover.png");
-}
-
-#reboot {
-  background-image: url("./icons/restart.png");
-}
-#reboot:hover {
-  background-image: url("./icons/restart-hover.png");
+  background-image: image(url("icons/suspend.svg"));
 }
 
 #hibernate {
-  background-image: url("./icons/hibernate.png");
+  background-image: image(url("icons/hibernate.svg"));
 }
-#hibernate:hover {
-  background-image: url("./icons/hibernate-hover.png");
+
+#shutdown {
+  background-image: image(url("icons/shutdown.svg"));
 }
-*/
+
+#reboot {
+  background-image: image(url("icons/reboot.svg"));
+}
