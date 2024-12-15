@@ -60,5 +60,3 @@ eval "$(starship init bash)"
 # set up zoxide
 eval "$(zoxide init bash)"
 
-fastfetch
-
