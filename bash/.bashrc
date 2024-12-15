@@ -33,6 +33,10 @@ alias stow='stow -t $HOME'
 alias cat='bat'
 alias vim='nvim'
 
+#docker aliases
+alias dirm='docker image ls --format "{{.Repository}}:{{.Tag}} {{.ID}}" | fzf --multi | awk "{print \$2}" | xargs -t -r docker image rm'
+alias dcrm='docker container ls -a --format "{{.Names}} {{.ID}}" | fzf --multi | awk "{print \$2}" | xargs -t -r docker container rm'
+
 # git related aliases
 alias lg='lazygit'
 alias gst='git status'
