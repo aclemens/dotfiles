@@ -189,6 +189,6 @@
   "custom/weather": {
     "format": "{}",
     "interval": 300,
-    "exec": "curl wttr.in/Bensheim?format=3",
+    "exec": "curl wttr.in/Bensheim?format=1",
   },
 }
