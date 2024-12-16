@@ -25,6 +25,7 @@
     "battery",
     "battery#bat2",
     "power-profiles-daemon",
+    "custom/weather",
     "clock",
   ],
   // Modules configuration
@@ -184,5 +185,10 @@
       "default": ["", "", ""],
     },
     "on-click": "pavucontrol",
+  },
+  "custom/weather": {
+    "format": "{}",
+    "interval": 300,
+    "exec": "curl wttr.in/Bensheim?format=3",
   },
 }
