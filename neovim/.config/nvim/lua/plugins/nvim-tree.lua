@@ -16,7 +16,7 @@ return {
     vim.keymap.set(
       "n",
       "<leader>ef",
-      "<cmd>NvimTreeFindFileToggle<CR>",
+      "<cmd>NvimTreeFindFile<CR>",
       { desc = "Toggle the file explorer and select the current file" }
     )
   end,
