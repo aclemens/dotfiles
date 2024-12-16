@@ -34,6 +34,7 @@ alias cat='bat'
 alias vim='nvim'
 alias v='vim'
 alias y='yazi'
+alias top='btop'
 
 #docker aliases
 alias dirm='docker image ls --format "{{.Repository}}:{{.Tag}} {{.ID}}" | fzf --multi | awk "{print \$2}" | xargs -t -r docker image rm'
