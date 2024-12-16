@@ -4,12 +4,9 @@
     "type": "small",
   },
   "modules": [
-    "title",
-    "separator",
-    "os",
     "kernel",
-    "packages",
     "uptime",
+    "packages",
     "break",
     "shell",
     "terminal",
