@@ -14,7 +14,7 @@ echo "Creating symlinks for dotfiles, this will overwrite existing files!"
 echo "Are you sure you want to continue? (y/n)"
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  stow -t ~ --simulate --restow --adopt */
+  stow -t ~ --restow --adopt */
 
   # check git for any changes, if there are any, reset the branch
   if [[ $(git diff --shortstat 2> /dev/null | tail -n1) != "" ]]; then
