@@ -59,5 +59,5 @@ eval "$(fzf --bash)"
 eval "$(starship init bash)"
 
 # set up zoxide
-eval "$(zoxide init bash)"
+eval "$(zoxide init --cmd cd bash)"
 
