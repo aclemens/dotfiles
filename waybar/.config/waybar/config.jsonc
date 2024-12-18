@@ -190,6 +190,7 @@
   "custom/weather": {
     "format": "{}",
     "interval": 300,
-    "exec": "curl wttr.in/Bensheim?format=1",
+    "exec": "python3 ~/.config/waybar/modules/weather.py",
+    "return-type": "json",
   },
 }
