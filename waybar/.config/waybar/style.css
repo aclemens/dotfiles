@@ -10,9 +10,9 @@ window#waybar {
   background-color: rgba(30, 30, 30, 0.9);
 }
 
-window#waybar > box {
-  padding: 0;
-}
+/* window#waybar > box { */
+/*   padding: 0; */
+/* } */
 
 .module {
   padding: 0 10px;
