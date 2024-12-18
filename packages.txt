@@ -20,6 +20,8 @@ ripgrep
 starship
 stow
 stylua
+tmux
+tmuxp
 vim
 waybar
 wofi
