@@ -7,7 +7,9 @@ sudo pacman -Syy --needed yay
 yay -S --needed - < packages.txt
 
 # Install all stow packages
-echo "Creating symlinks for dotfiles, this will overwrite existing files!"
+echo
+echo "Creating symlinks for dotfiles... this will overwrite existing files"
+echo "and remove configuration files that are unknown to stow!"
 echo "Are you sure you want to continue? (y/n)"
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
