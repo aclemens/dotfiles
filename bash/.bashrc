@@ -33,7 +33,6 @@ alias stow='stow -t $HOME'
 alias cat='bat'
 alias vim='nvim'
 alias v='vim'
-alias y='yazi'
 alias top='btop'
 
 #docker aliases
@@ -60,4 +59,14 @@ eval "$(starship init bash)"
 
 # set up zoxide
 eval "$(zoxide init --cmd cd bash)"
+
+# shell wrapper for yazi
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
 
