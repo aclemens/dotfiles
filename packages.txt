@@ -4,6 +4,7 @@ btop
 eza
 fastfetch
 fd
+ffmpeg
 fzf
 git
 htop
@@ -11,10 +12,14 @@ hyprland
 hyprlock
 hyprpaper
 hyprpicker
+imagemagick
+jq
 kitty
 lazygit
 neovim
 npm
+p7zip
+poppler
 python-black
 python-isort
 ripgrep
@@ -26,3 +31,5 @@ tmuxp
 vim
 waybar
 wofi
+yazi
+zoxide
