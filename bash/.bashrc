@@ -21,7 +21,7 @@ HISTFILESIZE=2000
 # ALIAS DEFINITIONS #
 #####################
 # ls related aliases
-alias ls='eza --header --git --group-directories-first --icons'
+alias ls='eza --group-directories-first --icons'
 #alias ls='ls --color=auto'
 alias la='ls -a'
 alias ll='la -l'
