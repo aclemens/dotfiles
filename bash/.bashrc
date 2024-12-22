@@ -23,8 +23,9 @@ HISTFILESIZE=2000
 # ls related aliases
 alias ls='eza --group-directories-first --icons'
 #alias ls='ls --color=auto'
+alias ll='ls -l'
+alias lla='ls -la'
 alias la='ls -a'
-alias ll='la -l'
 alias tree='ls --tree'
 
 # common app aliases
