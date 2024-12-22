@@ -13,3 +13,9 @@ vim.keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "close tab" })
 vim.keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "previous tab" })
 vim.keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "next tab" })
 vim.keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "open current buffer in new tab" })
+
+-- quickfix list
+vim.keymap.set("n", "<leader>qo", "<cmd>copen<CR>", { desc = "open quickfix list" })
+vim.keymap.set("n", "<leader>qc", "<cmd>cclose<CR>", { desc = "close quickfix list" })
+vim.keymap.set("n", "<leader>qn", "<cmd>cnext<CR>", { desc = "next quickfix item" })
+vim.keymap.set("n", "<leader>qp", "<cmd>cprev<CR>", { desc = "previous quickfix item" })
