@@ -12,7 +12,7 @@ For further information, please refer to the following links:
 
 ## Packages
 
-Install all the required packages on your system by running the `installation.sh` script.
+Install all the required packages on your system by running the `install.sh` script.
 
 ## Dotfiles
 
