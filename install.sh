@@ -1,4 +1,6 @@
 #!/bin/sh
+set -e
+set -u
 
 # Install yay for easy AUR package installation
 sudo pacman -Syy --needed yay
