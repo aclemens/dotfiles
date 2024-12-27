@@ -18,6 +18,7 @@ kitty
 lazygit
 neovim
 npm
+otf-font-awesome
 p7zip
 poppler
 python-black
