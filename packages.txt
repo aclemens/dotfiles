@@ -29,6 +29,7 @@ stow
 stylua
 tmux
 tmuxp
+ttf-meslo-nerd
 vim
 waybar
 wofi
