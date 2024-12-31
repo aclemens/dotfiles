@@ -23,6 +23,7 @@ return {
         "json",
         "yaml",
         "html",
+        "c_sharp",
         "css",
         "markdown",
         "markdown_inline",
