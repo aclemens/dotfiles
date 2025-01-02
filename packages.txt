@@ -27,6 +27,7 @@ ripgrep
 starship
 stow
 stylua
+swaync
 tmux
 tmuxp
 ttf-meslo-nerd
