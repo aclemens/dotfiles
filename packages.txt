@@ -24,6 +24,7 @@ poppler
 python-black
 python-isort
 ripgrep
+shfmt
 starship
 stow
 stylua
