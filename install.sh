@@ -2,11 +2,14 @@
 set -e
 set -u
 
+# check if the first parameter is set and assign it to the packages variable, otherwise use the default packages.txt
+packages="${1:-packages.txt}"
+
 # Install yay for easy AUR package installation
 sudo pacman -Syy --needed yay
 
 # Install all the packages from the packages.txt file
-yay -S --needed - <packages.txt
+yay -S --needed - <"${packages}"
 
 # Install all stow packages
 echo
