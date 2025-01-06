@@ -1,4 +1,13 @@
 #!/bin/bash
+
+# Author: Andi Clemens
+#
+# Description:
+# This script installs all packages from the packages.txt file and creates symlinks for all dotfiles.
+#
+# Usage:
+# ./install.sh [packages.txt]
+
 set -e
 set -u
 
