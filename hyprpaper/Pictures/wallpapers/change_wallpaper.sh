@@ -10,8 +10,6 @@
 set -e
 set -u
 
-wallpaper_link="current_wallpaper.png"
-
 # Read the wallpaper from the first argument.
 # If there is not exactly 1 argument, print the usage and exit.
 if [ "$#" -ne 1 ]; then
@@ -20,6 +18,7 @@ if [ "$#" -ne 1 ]; then
 fi
 
 wallpaper="$1"
+wallpaper_link="current_wallpaper.png"
 
 # Check if wallpaper exists, if not print an error message and exit.
 if [ ! -f "$wallpaper" ]; then
