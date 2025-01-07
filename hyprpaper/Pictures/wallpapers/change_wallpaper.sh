@@ -7,6 +7,7 @@
 # Usage:
 # ./change_wallpaper.sh <wallpaper>
 
+set -e
 set -u
 
 wallpaper_link="current_wallpaper.png"
@@ -38,5 +39,5 @@ ln -fs "$wallpaper" "$wallpaper_link"
 
 # Restart hyprpaper to apply the changes. Move all output to /dev/null.
 echo "Restarting hyprpaper..."
-killall -q hyprpaper >/dev/null 2>&1
+killall -q hyprpaper >/dev/null 2>&1 || true
 hyprpaper >/dev/null 2>&1 &
