@@ -28,7 +28,7 @@ if [ ! -f "$wallpaper" ]; then
 fi
 
 # Check if the wallpaper is a png file, if not print an error message and exit.
-if [ "${wallpaper: -4}" != ".png" ]; then
+if [[ $(file --mime-type -b "$wallpaper") != "image/png" ]]; then
   echo "Error: Wallpaper must be a png file."
   exit 1
 fi
