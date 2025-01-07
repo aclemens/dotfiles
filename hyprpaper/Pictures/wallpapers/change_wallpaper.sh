@@ -32,7 +32,7 @@ if [[ $(file --mime-type -b "$wallpaper") != "image/png" ]]; then
   exit 1
 fi
 
-# Set the current wallpaper to the given wallpaper.
+# Set wallpaper as the current wallpaper.
 echo "Setting $wallpaper_link -> $wallpaper"
 ln -fs "$wallpaper" "$wallpaper_link"
 
