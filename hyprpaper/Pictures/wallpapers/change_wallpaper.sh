@@ -21,7 +21,7 @@ wallpaper="$1"
 wallpaper_link="current_wallpaper.png"
 
 # Check if wallpaper exists, if not print an error message and exit.
-if [ ! -f "$wallpaper" ]; then
+if [[ ! -f "$wallpaper" ]]; then
   echo "Error: Wallpaper does not exist."
   exit 1
 fi
