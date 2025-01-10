@@ -1,2 +1,3 @@
 .obsidian
-hyprpaper/Pictures/wallpapers/current_wallpaper.png
+hyprpaper/Pictures/wallpapers/**/*.png
+hyprpaper/Pictures/wallpapers/**/*.jpg
