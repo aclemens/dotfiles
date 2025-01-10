@@ -18,7 +18,7 @@ if [ "$#" -ne 1 ]; then
 fi
 
 wallpaper="$1"
-wallpaper_link="current_wallpaper.png"
+wallpaper_link="current_wallpaper.jpg"
 
 # Check if wallpaper exists, if not print an error message and exit.
 if [[ ! -f "$wallpaper" ]]; then
@@ -26,9 +26,9 @@ if [[ ! -f "$wallpaper" ]]; then
   exit 1
 fi
 
-# Check if the wallpaper is a png file, if not print an error message and exit.
-if [[ $(file --mime-type -b "$wallpaper") != "image/png" ]]; then
-  echo "Error: Wallpaper must be a png file."
+# Check if the wallpaper is a jpg file, if not print an error message and exit.
+if [[ $(file --mime-type -b "$wallpaper") != "image/jpeg" ]]; then
+  echo "Error: Wallpaper must be a jpg file."
   exit 1
 fi
 
