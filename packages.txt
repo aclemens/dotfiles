@@ -1,5 +1,4 @@
 bat
-brave-bin
 btop
 eza
 fastfetch
