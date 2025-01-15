@@ -24,3 +24,7 @@ vim.opt.clipboard:append("unnamedplus") -- use system clipboard
 -- split windows
 vim.opt.splitright = true
 vim.opt.splitbelow = true
+
+-- autofolding
+vim.opt.foldmethod = "indent"
+vim.opt.foldlevelstart = 99
