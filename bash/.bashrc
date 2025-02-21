@@ -16,7 +16,6 @@ shopt -s histappend
 HISTSIZE=1000
 HISTFILESIZE=2000
 
-
 #####################
 # ALIAS DEFINITIONS #
 #####################
@@ -36,7 +35,10 @@ alias vim='nvim'
 alias v='vim'
 alias top='btop'
 
-#docker aliases
+# backup aliases
+alias tsc='sudo timeshift --snapshot-device /dev/sdb2 --create'
+
+# docker aliases
 alias dirm='docker image ls --format "{{.Repository}}:{{.Tag}} {{.ID}}" | fzf --multi | awk "{print \$2}" | xargs -t -r docker image rm'
 alias dcrm='docker container ls -a --format "{{.Names}} {{.ID}}" | fzf --multi | awk "{print \$2}" | xargs -t -r docker container rm'
 
@@ -44,7 +46,6 @@ alias dcrm='docker container ls -a --format "{{.Names}} {{.ID}}" | fzf --multi |
 alias lg='lazygit'
 alias gst='git status'
 #####################
-
 
 # set default editor to VIM
 VISUAL=nvim
