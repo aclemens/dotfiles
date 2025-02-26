@@ -23,6 +23,7 @@ return {
         typescript = { "prettier" },
         typescriptreact = { "prettier" },
         yaml = { "prettier" },
+        toml = { "taplo" },
       },
     })
 

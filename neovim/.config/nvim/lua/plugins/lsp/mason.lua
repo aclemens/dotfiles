@@ -17,6 +17,7 @@ return {
         "gopls",
         "lua_ls",
         "pyright",
+        "taplo",
       },
     })
   end,
