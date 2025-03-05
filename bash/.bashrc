@@ -12,9 +12,11 @@ HISTCONTROL=ignoredups:ignorespace
 # append to the history file, don't overwrite it
 shopt -s histappend
 
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+# Set the maximum number of commands to remember in the history
+HISTSIZE=100000
+
+# Set the maximum number of lines contained in the history file
+HISTFILESIZE=200000
 
 #####################
 # ALIAS DEFINITIONS #
