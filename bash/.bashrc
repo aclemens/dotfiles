@@ -38,6 +38,7 @@ alias top='btop'
 
 # backup aliases
 alias tsc='sudo timeshift --snapshot-device /dev/sdb2 --create'
+alias tsl='sudo timeshift --snapshot-device /dev/sdb2 --list'
 
 # docker aliases
 alias dirm='docker image ls --format "{{.Repository}}:{{.Tag}} {{.ID}}" | fzf --multi | awk "{print \$2}" | xargs -t -r docker image rm'
