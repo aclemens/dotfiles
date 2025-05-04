@@ -35,6 +35,8 @@ alias cat='bat'
 alias vim='nvim'
 alias v='vim'
 alias top='btop'
+alias act='source .venv/bin/activate'
+alias mvenv='python -m venv .venv'
 
 # backup aliases
 alias tsc='sudo timeshift --snapshot-device /dev/sdb2 --create'
