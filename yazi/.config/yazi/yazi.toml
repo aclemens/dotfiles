@@ -58,7 +58,7 @@ play = [
 	{ run = '''mediainfo "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show media info", for = "unix" },
 ]
 usage = [
-  { run = 'gdu -x "$1"', desc = "Usage (gdu)", block = true, for = "unix" },
+  { run = 'gdu -x "$0"', desc = "Usage (gdu)", block = true, for = "unix" },
 ]
 
 [open]
