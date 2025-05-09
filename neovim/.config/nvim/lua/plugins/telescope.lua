@@ -41,5 +41,11 @@ return {
     vim.keymap.set("n", "<leader>fg", builtin.grep_string, { desc = "Telescope search text under cursor" })
     vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
     vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
+    vim.keymap.set(
+      "n",
+      "<leader>fi",
+      builtin.current_buffer_fuzzy_find,
+      { desc = "Telescope current buffer fuzzy find" }
+    )
   end,
 }
