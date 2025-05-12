@@ -25,6 +25,15 @@ return {
         yaml = { "prettier" },
         toml = { "taplo" },
       },
+
+      formatters = {
+        black = {
+          prepend_args = { "--line-length", "120" },
+        },
+        isort = {
+          prepend_args = { "--profile", "black" },
+        },
+      },
     })
 
     vim.keymap.set({ "n", "v" }, "<leader>mp", function()
