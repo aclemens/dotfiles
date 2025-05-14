@@ -8,6 +8,7 @@ return {
   },
 
   config = function()
+    local actions = require("telescope.actions")
     local telescope = require("telescope")
     telescope.setup({
       defaults = {
@@ -25,6 +26,16 @@ return {
         hidden = true,
       },
       pickers = {
+        buffers = {
+          mappings = {
+            i = {
+              ["<C-d>"] = actions.delete_buffer, -- Delete buffer in insert mode
+            },
+            n = {
+              ["<C-d>"] = actions.delete_buffer, -- Delete buffer in normal mode
+            },
+          },
+        },
         find_files = {
           hidden = true,
         },
