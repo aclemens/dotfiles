@@ -5,3 +5,7 @@
 [mgr]
 ratio = [1, 4, 3]
 sort_by = "natural"
+
+[tasks]
+image_alloc = 536870912    # 512MB
+image_bound = [5500, 5500]
