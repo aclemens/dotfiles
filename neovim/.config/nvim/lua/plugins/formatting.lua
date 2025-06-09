@@ -18,21 +18,12 @@ return {
         liquid = { "prettier" },
         lua = { "stylua" },
         markdown = { "prettier" },
-        python = { "isort", "black" },
+        python = { "ruff_fix", "ruff_format" },
         svelte = { "prettier" },
         typescript = { "prettier" },
         typescriptreact = { "prettier" },
         yaml = { "prettier" },
         toml = { "taplo" },
-      },
-
-      formatters = {
-        black = {
-          prepend_args = { "--line-length", "120" },
-        },
-        isort = {
-          prepend_args = { "--profile", "black" },
-        },
       },
     })
 
