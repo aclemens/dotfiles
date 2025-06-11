@@ -75,3 +75,6 @@ function y() {
   fi
   rm -f -- "$tmp"
 }
+
+
+. "$HOME/.local/bin/env"
