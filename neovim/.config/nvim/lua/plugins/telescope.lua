@@ -59,5 +59,8 @@ return {
       { desc = "Telescope current buffer fuzzy find" }
     )
     vim.keymap.set("n", "<leader>fc", builtin.commands, { desc = "Telescope commands" })
+    vim.keymap.set("n", "<leader>fk", builtin.keymaps, { desc = "Telescope keymaps" })
+    vim.keymap.set("n", "<leader>fo", builtin.lsp_document_symbols, { desc = "Telescope LSP document symbols" })
+    vim.keymap.set("n", "<leader>fO", builtin.lsp_workspace_symbols, { desc = "Telescope LSP workspace symbols" })
   end,
 }
