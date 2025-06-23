@@ -58,5 +58,6 @@ return {
       builtin.current_buffer_fuzzy_find,
       { desc = "Telescope current buffer fuzzy find" }
     )
+    vim.keymap.set("n", "<leader>fc", builtin.commands, { desc = "Telescope commands" })
   end,
 }
