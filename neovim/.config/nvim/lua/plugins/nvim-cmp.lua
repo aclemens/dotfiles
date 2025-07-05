@@ -20,8 +20,26 @@ return {
     local cmp = require("cmp")
 
     local luasnip = require("luasnip")
+    local s = luasnip.snippet
+    local t = luasnip.text_node
+    local i = luasnip.insert_node
+    local extras = require("luasnip.extras")
+    local rep = extras.rep
+    local fmt = require("luasnip.extras.fmt").fmt
 
     local lspkind = require("lspkind")
+
+    vim.keymap.set("i", "<C-k>", function()
+      if luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
+      end
+    end, { silent = true, desc = "Expand or jump to next snippet node" })
+
+    vim.keymap.set("i", "<C-j>", function()
+      if luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+      end
+    end, { silent = true, desc = "Jump to previous snippet node" })
 
     -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
     require("luasnip.loaders.from_vscode").lazy_load()
@@ -36,8 +54,8 @@ return {
         end,
       },
       mapping = cmp.mapping.preset.insert({
-        ["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
-        ["<C-j>"] = cmp.mapping.select_next_item(), -- next suggestion
+        -- ["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
+        -- ["<C-j>"] = cmp.mapping.select_next_item(), -- next suggestion
         ["<C-b>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
