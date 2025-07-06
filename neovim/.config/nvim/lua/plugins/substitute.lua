@@ -2,9 +2,7 @@ return {
   "gbprod/substitute.nvim",
   event = { "BufReadPre", "BufNewFile" },
   config = function()
-    local substitute = require("substitute")
-
-    substitute.setup()
+    require("substitute").setup()
 
     -- set keymaps
     local keymap = vim.keymap -- for conciseness
