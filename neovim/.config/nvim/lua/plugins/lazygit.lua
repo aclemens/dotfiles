@@ -5,6 +5,7 @@ return {
   },
 
   config = function()
-    vim.keymap.set("n", "<leader><leader>", ":LazyGit<CR>", { desc = "Open LazyGit" })
+    vim.keymap.set("n", "<leader>gg", ":LazyGit<CR>", { desc = "Open LazyGit" })
+    vim.keymap.set("n", "<leader>gl", ":LazyGitFilterCurrentFile<CR>", { desc = "Open log for current file" })
   end,
 }
