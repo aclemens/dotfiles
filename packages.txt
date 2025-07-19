@@ -30,6 +30,7 @@ stylua
 swaync
 tmux
 tmuxp
+tree-sitter-cli
 ttf-meslo-nerd
 vim
 waybar
