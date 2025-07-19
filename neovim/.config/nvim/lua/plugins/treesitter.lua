@@ -23,6 +23,7 @@ return {
         "bash",
         "c_sharp",
         "css",
+        "diff",
         "dockerfile",
         "gitignore",
         "go",
