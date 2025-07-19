@@ -34,6 +34,7 @@ return {
         "markdown",
         "markdown_inline",
         "python",
+        "toml",
         "vim",
         "yaml",
       },
