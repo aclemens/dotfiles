@@ -11,15 +11,6 @@ return {
     local treesitter = require("nvim-treesitter.configs")
 
     treesitter.setup({
-      highlight = {
-        enable = true,
-      },
-      indent = {
-        enable = true,
-      },
-      autotag = {
-        enable = true,
-      },
       ensure_installed = {
         "bash",
         "c_sharp",
@@ -38,6 +29,10 @@ return {
         "vim",
         "yaml",
       },
+      auto_install = true,
+      highlight = { enable = true },
+      indent = { enable = true },
+      autotag = { enable = true },
       incremental_selection = {
         enable = true,
         keymaps = {
