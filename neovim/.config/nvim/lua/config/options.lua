@@ -13,6 +13,7 @@ vim.opt.cursorline = true
 -- file handling
 vim.opt.autoread = true
 vim.opt.autowrite = true
+vim.opt.swapfile = false
 
 -- search settings
 vim.opt.ignorecase = true
