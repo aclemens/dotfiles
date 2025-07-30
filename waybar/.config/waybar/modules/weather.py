@@ -17,7 +17,7 @@ def get_weather(*locations: str, format: str | None = None) -> str:
 
 
 def main():
-    text = get_weather("Bensheim", format="%t+%c").strip()
+    text = get_weather("Bensheim", format="%t+%C").strip()
     tooltip = get_weather(
         "Bensheim",
         "Frankfurt",
