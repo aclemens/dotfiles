@@ -10,9 +10,9 @@ window#waybar {
   background-color: rgba(30, 30, 30, 0.9);
 }
 
-/* window#waybar > box { */
-/*   padding: 0; */
-/* } */
+#workspaces button {
+  padding: 0 3px;
+}
 
 .modules-left {
   margin-left: 8px;
