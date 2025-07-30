@@ -21,3 +21,7 @@ window#waybar {
 .modules-right {
   margin-right: 8px;
 }
+
+#custom-weather {
+  margin-left: 1.2em;
+}

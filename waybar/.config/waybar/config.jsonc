@@ -17,7 +17,6 @@
   "modules-center": [
     // "hyprland/window",
     "clock",
-    "custom/weather",
   ],
   "modules-right": [
     "tray",
@@ -32,6 +31,7 @@
     "battery",
     // "battery#bat2",
     "power-profiles-daemon",
+    "custom/weather",
   ],
   // Modules configuration
   "hyprland/workspaces": {
