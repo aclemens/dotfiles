@@ -10,13 +10,14 @@
 
   "modules-left": [
     // "hyprland/mode",
-    // "hyprland/scratchpad"
+    "hyprland/scratchpad",
     "hyprland/workspaces",
   ],
   "modules-center": ["hyprland/window"],
   "modules-right": [
+    "custom/weather",
     "tray",
-    "mpd",
+    // "mpd",
     // "idle_inhibitor",
     "bluetooth",
     "network",
@@ -27,7 +28,6 @@
     "battery",
     // "battery#bat2",
     "power-profiles-daemon",
-    "custom/weather",
     "clock",
   ],
   // Modules configuration
@@ -211,10 +211,10 @@
   },
   "pulseaudio": {
     // "format": "{volume}% {icon}    {format_source}",
-    "format": "{icon}",
     // "format-bluetooth": "{volume}% {icon} {format_source}",
     // "format-bluetooth-muted": " {icon} {format_source}",
     // "format-muted": " {format_source}",
+    "format": "{icon}",
     "tooltip-format": "Playing at {volume}%",
     "format-muted": "󰝟",
     // "format-source": "{volume}% ",
