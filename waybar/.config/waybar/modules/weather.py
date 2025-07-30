@@ -17,14 +17,14 @@ def get_weather(*locations: str, format: str | None = None) -> str:
 
 
 def main():
-    text = get_weather("Bensheim", format="1").strip()
+    text = get_weather("Bensheim", format="%c%C+%t").strip()
     tooltip = get_weather(
         "Bensheim",
         "Frankfurt",
         "Windesheim",
         "Achim",
         "Tromsø",
-        format=r"%l\n++++++%t+/+%f++++%c+%C\n",
+        format=r"%l+%c%C+%t\n",
     ).strip()
     result = {"text": text, "tooltip": tooltip}
     print(json.dumps(result, indent=None))
