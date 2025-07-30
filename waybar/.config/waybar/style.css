@@ -1,6 +1,6 @@
 * {
   /* `otf-font-awesome` is required to be installed for icons */
-  font-family: FontAwesome;
+  font-family: "MesloLGM Nerd Font";
   font-size: 16px;
   font-weight: bold;
   color: #aaaaaa;
@@ -13,7 +13,10 @@ window#waybar {
 /* window#waybar > box { */
 /*   padding: 0; */
 /* } */
+.modules-left {
+  margin-left: 8px;
+}
 
-.module {
-  padding: 0 10px;
+.modules-right {
+  margin-right: 8px;
 }

@@ -3,7 +3,8 @@
   "reload_style_on_change": true,
   "layer": "top", // Waybar at top layer
   "position": "top", // Waybar position (top|bottom|left|right)
-  "spacing": 0, // Gaps between modules (4px)
+  "spacing": 16, // Gaps between modules
+  "height": 32, // Height of the bar
   "margin-left": 10,
   "margin-right": 10,
   "margin-top": 10,
