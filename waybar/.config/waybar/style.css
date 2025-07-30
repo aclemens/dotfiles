@@ -13,6 +13,7 @@ window#waybar {
 /* window#waybar > box { */
 /*   padding: 0; */
 /* } */
+
 .modules-left {
   margin-left: 8px;
 }

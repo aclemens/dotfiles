@@ -3,7 +3,7 @@
   "reload_style_on_change": true,
   "layer": "top", // Waybar at top layer
   "position": "top", // Waybar position (top|bottom|left|right)
-  "spacing": 16, // Gaps between modules
+  "spacing": 8, // Gaps between modules
   "height": 32, // Height of the bar
   "margin-left": 10,
   "margin-right": 10,
@@ -40,14 +40,14 @@
     "warp-on-scroll": false,
     "format": "{name}: {icon}",
     "format-icons": {
-      "default": "",
-      "active": "",
-      "1": "",
-      "2": "",
-      "3": "",
-      "4": "",
-      "5": "",
-      "10": "󰸻",
+      "default": " ",
+      "active": " ",
+      "1": " ",
+      "2": " ",
+      "3": " ",
+      "4": " ",
+      "5": " ",
+      "10": "󰸻 ",
     },
   },
   // "keyboard-state": {
@@ -65,7 +65,7 @@
   "hyprland/scratchpad": {
     "format": "{icon} {count}",
     "show-empty": false,
-    "format-icons": ["", ""],
+    "format-icons": ["", " "],
     "tooltip": true,
     "tooltip-format": "{app}: {title}",
   },
@@ -98,8 +98,8 @@
   "idle_inhibitor": {
     "format": "{icon}",
     "format-icons": {
-      "activated": "",
-      "deactivated": "",
+      "activated": " ",
+      "deactivated": " ",
     },
   },
   "tray": {
@@ -155,10 +155,10 @@
     "format-charging": "{icon}",
     "format-plugged": "",
     "format-icons": {
-      "charging": ["󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"],
+      "charging": ["󰢜 ", "󰂆 ", "󰂇 ", "󰂈 ", "󰢝 ", "󰂉 ", "󰢞 ", "󰂊 ", "󰂋 ", "󰂅 "],
       "default": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
     },
-    "format-full": "󰂅",
+    "format-full": "󰂅 ",
     "tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%",
     "tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%",
     "interval": 5,
@@ -175,10 +175,10 @@
     "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
     "tooltip": true,
     "format-icons": {
-      "default": "",
-      "performance": "",
-      "balanced": "",
-      "power-saver": "",
+      "default": " ",
+      "performance": " ",
+      "balanced": " ",
+      "power-saver": " ",
     },
   },
   // "network": {
@@ -193,11 +193,11 @@
   //   // "tooltip-format": "{ifname} via {gwaddr} ",
   // },
   "network": {
-    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+    "format-icons": ["󰤯 ", "󰤟 ", "󰤢 ", "󰤥 ", "󰤨 "],
     "format": "{icon}",
     "format-wifi": "{icon}",
-    "format-ethernet": "󰀂",
-    "format-disconnected": "󰖪",
+    "format-ethernet": "󰀂 ",
+    "format-disconnected": "󰖪 ",
     "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
     "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
     "tooltip-format-disconnected": "Disconnected",
@@ -213,23 +213,18 @@
     "on-click": "blueberry",
   },
   "pulseaudio": {
-    // "format": "{volume}% {icon}    {format_source}",
-    // "format-bluetooth": "{volume}% {icon} {format_source}",
-    // "format-bluetooth-muted": " {icon} {format_source}",
-    // "format-muted": " {format_source}",
     "format": "{icon}",
     "tooltip-format": "Playing at {volume}%",
-    "format-muted": "󰝟",
-    // "format-source": "{volume}% ",
-    "format-source-muted": "",
+    "format-muted": "󰝟 ",
+    "format-source-muted": " ",
     "format-icons": {
-      "headphone": "",
-      "hands-free": "",
-      "headset": "",
-      "phone": "",
-      "portable": "",
-      "car": "",
-      "default": ["", "", ""],
+      "headphone": " ",
+      "hands-free": " ",
+      "headset": " ",
+      "phone": " ",
+      "portable": " ",
+      "car": " ",
+      "default": ["", " ", " "],
     },
     "on-click": "pavucontrol",
     "scroll-step": 5,
