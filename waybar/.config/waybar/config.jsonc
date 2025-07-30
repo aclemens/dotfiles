@@ -18,6 +18,7 @@
     "mpd",
     // "idle_inhibitor",
     "pulseaudio",
+    "bluetooth",
     "network",
     // "cpu",
     // "memory",
@@ -169,6 +170,13 @@
     // "interface": "wlp2*", // (Optional) To force the use of this interface
     // "format-wifi": "{essid} ({signalStrength}%) ",
     // "tooltip-format": "{ifname} via {gwaddr} ",
+  },
+  "bluetooth": {
+    "format": "",
+    "format-disabled": "󰂲",
+    "format-connected": "",
+    "tooltip-format": "Devices connected: {num_connections}",
+    "on-click": "blueberry",
   },
   "pulseaudio": {
     // "scroll-step": 1, // %, can be a float
