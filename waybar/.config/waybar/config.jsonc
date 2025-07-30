@@ -210,12 +210,14 @@
     "on-click": "blueberry",
   },
   "pulseaudio": {
-    // "scroll-step": 1, // %, can be a float
-    "format": "{volume}% {icon}    {format_source}",
-    "format-bluetooth": "{volume}% {icon} {format_source}",
-    "format-bluetooth-muted": " {icon} {format_source}",
-    "format-muted": " {format_source}",
-    "format-source": "{volume}% ",
+    // "format": "{volume}% {icon}    {format_source}",
+    "format": "{icon}",
+    // "format-bluetooth": "{volume}% {icon} {format_source}",
+    // "format-bluetooth-muted": " {icon} {format_source}",
+    // "format-muted": " {format_source}",
+    "tooltip-format": "Playing at {volume}%",
+    "format-muted": "󰝟",
+    // "format-source": "{volume}% ",
     "format-source-muted": "",
     "format-icons": {
       "headphone": "",
@@ -227,6 +229,7 @@
       "default": ["", "", ""],
     },
     "on-click": "pavucontrol",
+    "scroll-step": 5,
   },
   "custom/weather": {
     "format": "{}",
