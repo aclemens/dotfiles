@@ -24,7 +24,7 @@ def main():
         "Windesheim",
         "Achim",
         "Tromsø",
-        format=r"%l+%t+%c%C\n",
+        format=r"%l:%c%t+(%C)\n",
     ).strip()
     result = {"text": text, "tooltip": tooltip}
     print(json.dumps(result, indent=None))
