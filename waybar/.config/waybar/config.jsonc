@@ -4,7 +4,7 @@
   "layer": "top", // Waybar at top layer
   "position": "top", // Waybar position (top|bottom|left|right)
   "spacing": 8, // Gaps between modules
-  "height": 36, // Height of the bar
+  // "height": 32, // Height of the bar
 
   "modules-left": ["hyprland/scratchpad", "hyprland/workspaces"],
   "modules-center": [
@@ -27,7 +27,7 @@
     "warp-on-scroll": false,
     "format": "{icon}",
     "format-icons": {
-      "active": " ",
+      // "active": " ",
     },
   },
   "hyprland/scratchpad": {
