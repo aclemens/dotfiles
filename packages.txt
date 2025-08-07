@@ -41,7 +41,5 @@ ttf-meslo-nerd
 vim
 waybar
 wofi
-xdg-desktop-portal-gtkbat
-xdg-desktop-portal-hyprland
 yazi
 zoxide
