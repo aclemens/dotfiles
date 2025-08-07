@@ -19,6 +19,7 @@ imagemagick
 jq
 kitty
 lazygit
+less
 neovim
 npm
 otf-font-awesome
