@@ -39,8 +39,8 @@ alias act='source .venv/bin/activate'
 alias mvenv='python -m venv .venv'
 
 # backup aliases
-alias tsc='sudo timeshift --snapshot-device /dev/sdb2 --create'
-alias tsl='sudo timeshift --snapshot-device /dev/sdb2 --list'
+alias tsc='sudo timeshift --snapshot-device /dev/sdb4 --create'
+alias tsl='sudo timeshift --snapshot-device /dev/sdb4 --list'
 
 # docker aliases
 alias dirm='docker image ls --format "{{.Repository}}:{{.Tag}} {{.ID}}" | fzf --multi | awk "{print \$2}" | xargs -t -r docker image rm'
@@ -49,6 +49,10 @@ alias dcrm='docker container ls -a --format "{{.Names}} {{.ID}}" | fzf --multi |
 # git related aliases
 alias lg='lazygit'
 alias gst='git status'
+
+# yay related aliases
+alias yayif='yay -Slq | sort -u | fzf --multi --preview "yay -Si {1}" | xargs -ro yay -Sy'
+alias yayrf='yay -Qeq | sort -u | fzf --multi --preview "yay -Qi {1}" | xargs -ro yay -Rscn'
 #####################
 
 # set default editor to VIM
