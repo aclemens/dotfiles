@@ -8,4 +8,4 @@ sort_by = "natural"
 
 [tasks]
 image_alloc = 536870912    # 512MB
-image_bound = [6500, 6500]
+image_bound = [12000, 12000] # 12k x 12k
