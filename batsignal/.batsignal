@@ -1,0 +1,8 @@
+# set icon
+-I
+battery
+# set interval
+-m
+1
+# show message when charging
+-p
