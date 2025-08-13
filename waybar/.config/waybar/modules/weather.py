@@ -8,6 +8,7 @@ def get_weather(*locations: str, format: str | None = None) -> str:
     result = subprocess.run(
         [
             "curl",
+            "--silent",
             f"wttr.in/{{{location_str}}}{format_str}",
         ],
         stdout=subprocess.PIPE,
