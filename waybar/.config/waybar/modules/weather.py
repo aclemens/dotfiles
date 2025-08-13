@@ -14,11 +14,11 @@ def get_weather(*locations: str, format: str | None = None) -> str:
         stdout=subprocess.PIPE,
     )
     # decode the result and return it
-    return result.stdout.decode("utf-8")
+    return result.stdout.decode("utf-8").strip()
 
 
 def main():
-    text = get_weather("Bensheim", format="%t+%C").strip()
+    text = get_weather("Bensheim", format="%t+%C")
     tooltip = get_weather(
         "Bensheim",
         "Frankfurt",
@@ -26,7 +26,7 @@ def main():
         "Achim",
         "Tromsø",
         format=r"%l:%c%t+(%C)\n",
-    ).strip()
+    )
     result = {"text": text, "tooltip": tooltip}
     print(json.dumps(result, indent=None))
 
