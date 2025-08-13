@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 
 # setup ufw
 sudo pacman -S --noconfirm --needed ufw
@@ -13,6 +13,10 @@ sudo ufw default deny incoming
 sudo ufw default allow outgoing
 sudo ufw default deny routed
 
+# allow loopback connections
+sudo ufw allow in on lo
+sudo ufw allow out on lo
+
 # # QMENU settings
 # Allow DNS
 sudo ufw route allow in on virbr0 out on wlan0 proto udp to any port 53
@@ -23,7 +27,11 @@ sudo ufw route allow in on virbr0 out on wlan0 proto tcp to any port 443
 
 # enable ufw
 sudo ufw enable
-sudo ufw reload
 
 # show ufw status
 sudo ufw status verbose
+
+# make sure ufw is enabled on boot
+sudo systemctl enable ufw
+sudo systemctl restart ufw
+sudo systemctl daemon-reload
