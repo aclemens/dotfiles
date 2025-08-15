@@ -17,13 +17,13 @@ sudo ufw default deny routed
 sudo ufw allow in on lo
 sudo ufw allow out on lo
 
-# # QMENU settings
-# Allow DNS
-sudo ufw route allow in on virbr0 out on wlan0 proto udp to any port 53
-# Allow HTTP
-sudo ufw route allow in on virbr0 out on wlan0 proto tcp to any port 80
-# Allow HTTPS
-sudo ufw route allow in on virbr0 out on wlan0 proto tcp to any port 443
+# # # QMENU settings
+# # Allow DNS
+# sudo ufw route allow in on virbr0 out on wlan0 proto udp to any port 53
+# # Allow HTTP
+# sudo ufw route allow in on virbr0 out on wlan0 proto tcp to any port 80
+# # Allow HTTPS
+# sudo ufw route allow in on virbr0 out on wlan0 proto tcp to any port 443
 
 # enable ufw
 sudo ufw enable
