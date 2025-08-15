@@ -37,6 +37,7 @@ alias v='vim'
 alias top='btop'
 alias act='source .venv/bin/activate'
 alias mvenv='python -m venv .venv'
+alias yd='yt-dlp --embed-chapters -t mp4'
 
 # backup aliases
 alias tsc='sudo timeshift --snapshot-device /dev/sdb4 --create'
