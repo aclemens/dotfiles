@@ -56,6 +56,8 @@ alias yayif='yay -Slq | sort -u | fzf --multi --preview "yay -Si {1}" | xargs -r
 alias yayrf='yay -Qeq | sort -u | fzf --multi --preview "yay -Qi {1}" | xargs -ro yay -Rscn'
 #####################
 
+export UV_CACHE_DIR=/mnt/data/.cache/uv
+
 # set default editor to VIM
 VISUAL=nvim
 EDITOR=nvim
