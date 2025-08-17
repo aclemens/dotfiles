@@ -58,8 +58,10 @@ function restart_hyprpaper() {
 set -e
 set -u
 
-yazi --chooser-file selected || exit 1
-wallpaper=$(<selected)
+SELECTED="$HOME/Pictures/wallpapers/selected"
+echo "$SELECTED"
+yazi --chooser-file "$SELECTED" || exit 1
+wallpaper=$(<"$SELECTED")
 rm -f selected
 
 check_dependencies magick hyprpaper
