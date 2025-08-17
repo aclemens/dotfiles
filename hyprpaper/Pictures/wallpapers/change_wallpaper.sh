@@ -58,13 +58,9 @@ function restart_hyprpaper() {
 set -e
 set -u
 
-# Check if the correct number of parameters is passed
-if [[ "$#" -ne 1 ]]; then
-  echo "Usage: $0 <wallpaper>"
-  exit 1
-fi
-
-wallpaper="$1"
+yazi --chooser-file selected || exit 1
+wallpaper=$(<selected)
+rm -f selected
 
 check_dependencies magick hyprpaper
 check_and_convert_wallpaper
