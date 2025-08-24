@@ -40,8 +40,8 @@ alias mvenv='python -m venv .venv'
 alias yd='yt-dlp --embed-chapters -t mp4'
 
 # backup aliases
-alias tsc='sudo timeshift --snapshot-device /dev/sdb4 --create'
-alias tsl='sudo timeshift --snapshot-device /dev/sdb4 --list'
+alias tsc='sudo timeshift --snapshot-device /dev/sda3 --create'
+alias tsl='sudo timeshift --snapshot-device /dev/sda3 --list'
 
 # docker aliases
 alias dirm='docker image ls --format "{{.Repository}}:{{.Tag}} {{.ID}}" | fzf --multi | awk "{print \$2}" | xargs -t -r docker image rm'
