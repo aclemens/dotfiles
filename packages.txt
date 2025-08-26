@@ -2,12 +2,14 @@ bat
 batsignal
 blueberry
 btop
+caligula
 eza
 fastfetch
 fd
 ffmpeg
 fzf
 git
+gum
 htop
 hypridle
 hyprland

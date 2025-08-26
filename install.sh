@@ -21,9 +21,8 @@ sudo pacman -S --needed - <"${packages}"
 echo
 echo "Creating symlinks for dotfiles... this will overwrite existing files"
 echo "and remove configuration files that are unknown to stow!"
-echo "Are you sure you want to continue? (y/n)"
-read -r response
-if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+
+if gum confirm "Are you sure you want to continue?"; then
   stow -t ~ --restow --adopt */
 
   # check git for any changes, if there are any, reset the branch
