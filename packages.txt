@@ -39,6 +39,7 @@ stylua
 swaync
 tmux
 tmuxp
+trash-cli
 tree-sitter-cli
 ttf-meslo-nerd
 vim
