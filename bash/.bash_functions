@@ -37,6 +37,17 @@ function __check_dependencies() {
   fi
 }
 
+function chdir() {
+  local TARGET_DIR="$1"
+  local CURRENT_DIR="$(pwd)"
+  if [ -d "$TARGET_DIR" ]; then
+    cd "$TARGET_DIR"
+  else
+    echo "Directory $TARGET_DIR does not exist."
+    exit 1
+  fi
+}
+
 function pdownload() {
   __check_dependencies || return 1
 
@@ -46,19 +57,11 @@ function pdownload() {
   # remember current directory
   local CURRENT_DIR="$(pwd)"
 
-  cd "$DATA_DIR" || {
-    echo "Failed to change directory to $DATA_DIR"
-    cd "$CURRENT_DIR" || return 1
-    return 1
-  }
+  chdir "$DATA_DIR"
 
   gallery-dl -i gallery-downloads.txt
 
-  cd "$NEWEST_IMAGES_DIR" || {
-    echo "Failed to change directory to $NEWEST_IMAGES_DIR"
-    cd "$CURRENT_DIR" || return 1
-    return 1
-  }
+  chdir "$NEWEST_IMAGES_DIR"
 
   uv run newest_images clean
   uv run newest_images find ..
