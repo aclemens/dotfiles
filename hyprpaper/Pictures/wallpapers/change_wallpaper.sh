@@ -7,18 +7,11 @@
 # Usage:
 # ./change_wallpaper.sh <wallpaper>
 
-function check_dependencies() {
-  # Check if required commands are available
-  local cmds="$@"
-  for cmd in $cmds; do
-    if ! command -v "$cmd" &>/dev/null; then
-      echo "Error: $cmd is not installed. Please install it to use this script."
-      exit 1
-    fi
-  done
-}
+CURRENT_WALLPAPER="$HOME/Pictures/wallpapers/current_wallpaper.jpg"
+SELECTED="$HOME/Pictures/wallpapers/selected"
 
 function check_and_convert_wallpaper() {
+  local wallpaper="$1"
   # if the wallpaper is not a jpeg but an image file, convert it to jpeg.
   if [[ ! -f "$wallpaper" ]]; then
     echo "Error: File '$wallpaper' does not exist."
@@ -39,32 +32,31 @@ function check_and_convert_wallpaper() {
 }
 
 function set_wallpaper() {
-  # Set wallpaper as the current wallpaper.
-  local wallpaper_link="$HOME/Pictures/wallpapers/current_wallpaper.jpg"
-  echo "Setting $wallpaper_link -> $wallpaper"
-  ln -fs "$wallpaper" "$wallpaper_link"
+  local wallpaper="$1"
+  echo "Setting wallpaper..."
+  ln -fs "$wallpaper" "$CURRENT_WALLPAPER"
 }
 
 function restart_hyprpaper() {
   # Restart hyprpaper to apply the changes.
   echo "Restarting hyprpaper..."
-  killall -q hyprpaper >/dev/null 2>&1 || true
-  hyprpaper >/dev/null 2>&1 &
+  hyprctl -q hyprpaper unload "$CURRENT_WALLPAPER"
+  hyprctl -q hyprpaper preload "$CURRENT_WALLPAPER"
+  hyprctl -q hyprpaper wallpaper ",$CURRENT_WALLPAPER"
 }
 
 # --------------------------------------------------
 # # MAIN SCRIPT
 # --------------------------------------------------
-set -e
-set -u
+set -euo pipefail
 
-SELECTED="$HOME/Pictures/wallpapers/selected"
-echo "$SELECTED"
+source $HOME/.bash_functions
+check_dependencies magick hyprctl hyprpaper yazi
+
 yazi --chooser-file "$SELECTED" || exit 1
 wallpaper=$(<"$SELECTED")
 rm -f selected
 
-check_dependencies magick hyprpaper
-check_and_convert_wallpaper
-set_wallpaper
+check_and_convert_wallpaper "$wallpaper"
+set_wallpaper "$wallpaper"
 restart_hyprpaper
