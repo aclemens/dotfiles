@@ -10,14 +10,7 @@ function set_wallpaper() {
   local wallpaper="$1"
   echo "Setting wallpaper..."
   ln -fs "$wallpaper" "$CURRENT_WALLPAPER"
-}
-
-function restart_hyprpaper() {
-  # Restart hyprpaper to apply the changes.
-  echo "Restarting hyprpaper..."
-  hyprctl -q hyprpaper unload "$CURRENT_WALLPAPER"
-  hyprctl -q hyprpaper preload "$CURRENT_WALLPAPER"
-  hyprctl -q hyprpaper wallpaper ",$CURRENT_WALLPAPER"
+  hyprctl -q hyprpaper reload ",${CURRENT_WALLPAPER}"
 }
 
 function select_wallpaper() {
@@ -38,4 +31,3 @@ check_dependencies hyprctl hyprpaper yazi
 
 wallpaper=$(select_wallpaper) || exit 1
 set_wallpaper "$wallpaper"
-restart_hyprpaper
