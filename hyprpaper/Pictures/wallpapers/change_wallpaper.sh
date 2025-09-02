@@ -1,35 +1,10 @@
 #!/bin/bash
 
 # Description:
-# This script changes the wallpaper of the desktop environment.
-# The wallpaper must be in the same directory as the script.
-#
-# Usage:
-# ./change_wallpaper.sh <wallpaper>
+# This script changes the wallpaper of hyprland.
 
-CURRENT_WALLPAPER="$HOME/Pictures/wallpapers/current_wallpaper.jpg"
-SELECTED="$HOME/Pictures/wallpapers/selected"
-
-function check_and_convert_wallpaper() {
-  local wallpaper="$1"
-  # if the wallpaper is not a jpeg but an image file, convert it to jpeg.
-  if [[ ! -f "$wallpaper" ]]; then
-    echo "Error: File '$wallpaper' does not exist."
-    exit 1
-  fi
-  if [[ $(file --mime-type -b "$wallpaper") != "image/jpeg" ]]; then
-    # ask the user if they want to convert the wallpaper to jpeg.
-    read -p "The wallpaper is not in JPEG format. Do you want to convert it to JPEG? (y/n): " choice
-    if [[ "$choice" != "y" && "$choice" != "Y" ]]; then
-      echo "Exiting without changing the wallpaper."
-      exit 0
-    fi
-    echo "Converting to JPEG format..."
-    new_wallpaper="${wallpaper%.*}.jpg"
-    magick "$wallpaper" "$new_wallpaper"
-    wallpaper="$new_wallpaper"
-  fi
-}
+CURRENT_WALLPAPER="$HOME/Pictures/wallpapers/current_wallpaper"
+YAZI_SELECTION="$HOME/Pictures/wallpapers/selected"
 
 function set_wallpaper() {
   local wallpaper="$1"
@@ -45,18 +20,22 @@ function restart_hyprpaper() {
   hyprctl -q hyprpaper wallpaper ",$CURRENT_WALLPAPER"
 }
 
-# --------------------------------------------------
-# # MAIN SCRIPT
-# --------------------------------------------------
+function select_wallpaper() {
+  yazi --chooser-file "$YAZI_SELECTION" || exit 1
+  cat "$YAZI_SELECTION"
+}
+
+function cleanup_selection() {
+  echo "Cleaning up selection file..."
+  rm -f "$YAZI_SELECTION"
+}
+
 set -euo pipefail
-
+trap cleanup_selection EXIT
 source $HOME/.bash_functions
-check_dependencies magick hyprctl hyprpaper yazi
 
-yazi --chooser-file "$SELECTED" || exit 1
-wallpaper=$(<"$SELECTED")
-rm -f selected
+check_dependencies hyprctl hyprpaper yazi
 
-check_and_convert_wallpaper "$wallpaper"
+wallpaper=$(select_wallpaper) || exit 1
 set_wallpaper "$wallpaper"
 restart_hyprpaper
