@@ -5,7 +5,7 @@
 ########################
 
 function __check_dependencies() {
-  local dependencies=("gum")
+  local dependencies=("gum" "gallery-dl")
   local missing=()
 
   for cmd in "${dependencies[@]}"; do
@@ -35,4 +35,33 @@ function __check_dependencies() {
       fi
     fi
   fi
+}
+
+function pdownload() {
+  __check_dependencies || return 1
+
+  local DATA_DIR="/mnt/data"
+  local NEWEST_IMAGES_DIR="$DATA_DIR/gallery-dl/newest_images"
+
+  # remember current directory
+  local CURRENT_DIR="$(pwd)"
+
+  cd "$DATA_DIR" || {
+    echo "Failed to change directory to $DATA_DIR"
+    cd "$CURRENT_DIR" || return 1
+    return 1
+  }
+
+  gallery-dl -i gallery-downloads.txt
+
+  cd "$NEWEST_IMAGES_DIR" || {
+    echo "Failed to change directory to $NEWEST_IMAGES_DIR"
+    cd "$CURRENT_DIR" || return 1
+    return 1
+  }
+
+  uv run newest_images clean
+  uv run newest_images find ..
+  gum confirm "Do you want to open yazi for viewing images now?" && yazi "$NEWEST_IMAGES_DIR/images"
+  cd "$CURRENT_DIR" || return 1
 }
