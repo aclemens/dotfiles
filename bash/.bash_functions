@@ -13,7 +13,7 @@ err() { printf 'error: %s\n' "$*" >&2; }
 # Returns 0 if all present, 1 if missing.
 # If missing, prompts to install via pacman if available.
 function __check_dependencies() {
-  local dependencies=("gum" "gallery-dl" "yazi" "uv")
+  local dependencies=("gum" "gallery-dl" "yazi" "uv" "fzf")
   local missing=()
   local cmd
 
