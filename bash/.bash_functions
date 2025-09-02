@@ -75,12 +75,13 @@ function chdir() {
 # Downloads gallery items listed in gallery-downloads.txt into /mnt/data,
 # runs uv tasks to collect newest images, and optionally opens them in yazi.
 function pdownload() {
-  __check_dependencies || return 1
-
   local DATA_DIR="/mnt/data"
   local NEWEST_IMAGES_DIR="$DATA_DIR/gallery-dl/newest_images"
   local PREV_PWD
   PREV_PWD="$(pwd)"
+
+  __check_dependencies || return 1
+
   # ensure we always return to previous directory
   cleanup_pdownload() { cd -- "$PREV_PWD" >/dev/null 2>&1 || true; }
   trap cleanup_pdownload RETURN
@@ -90,7 +91,7 @@ function pdownload() {
     return 1
   fi
 
-  gallery-dl -i gallery-downloads.txt
+  gallery-dl $(fzf --multi <"$DATA_DIR/gallery-downloads.txt") || err "gallery-dl failed"
 
   if ! chdir "$NEWEST_IMAGES_DIR"; then
     err "Newest images directory $NEWEST_IMAGES_DIR not available"
