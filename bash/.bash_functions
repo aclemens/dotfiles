@@ -5,7 +5,7 @@
 ########################
 
 function __check_dependencies() {
-  local dependencies=("gum" "gallery-dl")
+  local dependencies=("gum" "gallery-dl" "yazi")
   local missing=()
 
   for cmd in "${dependencies[@]}"; do
