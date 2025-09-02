@@ -40,7 +40,7 @@ function check_and_convert_wallpaper() {
 
 function set_wallpaper() {
   # Set wallpaper as the current wallpaper.
-  local wallpaper_link="current_wallpaper.jpg"
+  local wallpaper_link="$HOME/Pictures/wallpapers/current_wallpaper.jpg"
   echo "Setting $wallpaper_link -> $wallpaper"
   ln -fs "$wallpaper" "$wallpaper_link"
 }
