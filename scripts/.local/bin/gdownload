@@ -11,7 +11,8 @@ NEWEST_IMAGES_DIR="$DATA_DIR/gallery-dl/newest_images"
 function download() {
   cd "$DATA_DIR"
   mapfile -t sources < <(fzf \
-    --prompt "Search sources> " \
+    --header "Sources" \
+    --footer "Gallery Downloader" \
     --margin 30%,20% \
     --border \
     --info inline \
