@@ -24,7 +24,8 @@ function download() {
     echo "No sources selected. Exiting."
     exit 0
   fi
-  gallery-dl "${sources[@]}"
+
+  gallery-dl "${sources[@]}" || true
 }
 
 # runs uv tasks to collect newest images, and optionally opens them in yazi.
