@@ -1,19 +1,14 @@
 #!/bin/bash
 
+DATA_DIR="/mnt/data"
+NEWEST_IMAGES_DIR="$DATA_DIR/gallery-dl/newest_images"
+
 # Downloads gallery items listed in gallery-downloads.txt into /mnt/data,
 # runs uv tasks to collect newest images, and optionally opens them in yazi.
 function pdownload() {
-  local DATA_DIR="/mnt/data"
-  local NEWEST_IMAGES_DIR="$DATA_DIR/gallery-dl/newest_images"
-  local PREV_PWD
-  PREV_PWD="$(pwd)"
-
-  # # ensure we always return to previous directory
-  # cleanup_pdownload() { cd -- "$PREV_PWD" >/dev/null 2>&1 || true; }
-  # trap cleanup_pdownload RETURN
-
   cd "$DATA_DIR"
   gallery-dl $(fzf --multi <"$DATA_DIR/gallery-downloads.txt") || true
+
   cd "$NEWEST_IMAGES_DIR"
   uv run newest_images clean
   uv run newest_images find ..
