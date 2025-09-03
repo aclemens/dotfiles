@@ -1,5 +1,8 @@
 #!/bin/bash
 
+set -euo pipefail
+source "$HOME/.bash_functions"
+
 DATA_DIR="/mnt/data"
 NEWEST_IMAGES_DIR="$DATA_DIR/gallery-dl/newest_images"
 
@@ -18,7 +21,5 @@ function pdownload() {
   fi
 }
 
-set -euo pipefail
-source "$HOME/.bash_functions"
 check_dependencies gallery-dl uv yazi fzf || exit 1
 pdownload

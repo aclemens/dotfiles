@@ -1,5 +1,8 @@
 #!/bin/bash
 
+set -euo pipefail
+source $HOME/.bash_functions
+
 WALLPAPER_DIR="$HOME/Pictures/wallpapers"
 CURRENT_WALLPAPER="$WALLPAPER_DIR/current_wallpaper"
 YAZI_SELECTION="$HOME/Pictures/wallpapers/selected"
@@ -25,9 +28,7 @@ function cleanup_selection() {
   rm -f "$YAZI_SELECTION"
 }
 
-set -euo pipefail
 trap cleanup_selection EXIT
-source $HOME/.bash_functions
 
 check_dependencies hyprctl hyprpaper yazi
 
