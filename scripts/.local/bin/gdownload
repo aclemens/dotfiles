@@ -18,6 +18,10 @@ function download() {
     --layout reverse \
     --multi \
     <"$DOWNLOADS_FILE")
+  if [ ${#sources[@]} -eq 0 ]; then
+    echo "No sources selected. Exiting."
+    exit 0
+  fi
   gallery-dl "${sources[@]}"
 }
 
