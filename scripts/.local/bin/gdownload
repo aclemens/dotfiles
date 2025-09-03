@@ -7,11 +7,21 @@ DATA_DIR="/mnt/data"
 NEWEST_IMAGES_DIR="$DATA_DIR/gallery-dl/newest_images"
 
 # Downloads gallery items listed in gallery-downloads.txt into /mnt/data,
-# runs uv tasks to collect newest images, and optionally opens them in yazi.
-function pdownload() {
+function download() {
   cd "$DATA_DIR"
-  gallery-dl $(fzf --multi <"$DATA_DIR/gallery-downloads.txt") || true
+  mapfile -t sources < <(fzf \
+    --prompt "Search sources> " \
+    --margin 30%,20% \
+    --border \
+    --info inline \
+    --layout reverse \
+    --multi \
+    <"$DATA_DIR/gallery-downloads.txt")
+  gallery-dl "${sources[@]}"
+}
 
+# runs uv tasks to collect newest images, and optionally opens them in yazi.
+function regenerate_images_links() {
   cd "$NEWEST_IMAGES_DIR"
   uv run newest_images clean
   uv run newest_images find ..
@@ -22,4 +32,5 @@ function pdownload() {
 }
 
 check_dependencies gallery-dl uv yazi fzf || exit 1
-pdownload
+download
+regenerate_images_links
