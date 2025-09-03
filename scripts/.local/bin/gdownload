@@ -18,6 +18,7 @@ function download() {
     --info inline \
     --layout reverse \
     --multi \
+    --bind ctrl-a:select-all \
     <"$DOWNLOADS_FILE")
   if [ ${#sources[@]} -eq 0 ]; then
     echo "No sources selected. Exiting."
