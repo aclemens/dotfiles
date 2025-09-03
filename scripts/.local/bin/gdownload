@@ -7,7 +7,7 @@ DATA_DIR="/mnt/data"
 DOWNLOADS_FILE="$DATA_DIR/gallery-downloads.txt"
 NEWEST_IMAGES_DIR="$DATA_DIR/gallery-dl/newest_images"
 
-# Downloads gallery items listed in gallery-downloads.txt into /mnt/data,
+# Downloads gallery items listed in gallery-downloads.txt
 function download() {
   cd "$DATA_DIR"
   mapfile -t sources < <(fzf \
@@ -28,7 +28,7 @@ function download() {
   gallery-dl "${sources[@]}" || true
 }
 
-# runs uv tasks to collect newest images, and optionally opens them in yazi.
+# runs uv tasks to collect newest images, and optionally opens them in yazi
 function regenerate_images_links() {
   cd "$NEWEST_IMAGES_DIR"
   uv run newest_images clean
