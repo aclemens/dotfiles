@@ -3,7 +3,8 @@
 # Description:
 # This script changes the wallpaper of hyprland.
 
-CURRENT_WALLPAPER="$HOME/Pictures/wallpapers/current_wallpaper"
+WALLPAPER_DIR="$HOME/Pictures/wallpapers"
+CURRENT_WALLPAPER="$WALLPAPER_DIR/current_wallpaper"
 YAZI_SELECTION="$HOME/Pictures/wallpapers/selected"
 
 function set_wallpaper() {
@@ -14,7 +15,7 @@ function set_wallpaper() {
 }
 
 function select_wallpaper() {
-  yazi --chooser-file "$YAZI_SELECTION" || exit 1
+  yazi --chooser-file "$YAZI_SELECTION" "$WALLPAPER_DIR" || exit 1
   cat "$YAZI_SELECTION"
 }
 
