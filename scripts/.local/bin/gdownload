@@ -13,7 +13,7 @@ function download() {
   mapfile -t sources < <(fzf \
     --header "Sources" \
     --footer "Gallery Downloader" \
-    --margin 30%,20% \
+    --margin 30%,25% \
     --border \
     --info inline \
     --layout reverse \
