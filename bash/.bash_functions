@@ -46,3 +46,7 @@ check_dependencies() {
   fi
   echo "Install the missing dependencies and retry." && return 1
 }
+
+man() {
+  /usr/bin/man "$@" | bat -l man -p
+}
