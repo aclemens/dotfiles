@@ -3,34 +3,22 @@
 set -euo pipefail
 source $HOME/.bash_functions
 
+check_dependencies hyprctl hyprpaper yazi
+
 WALLPAPER_DIR="$HOME/Pictures/wallpapers"
 CURRENT_WALLPAPER="$WALLPAPER_DIR/current_wallpaper"
 YAZI_SELECTION="$HOME/Pictures/wallpapers/selected"
-
-# Set the wallpaper using hyprpaper
-set_wallpaper() {
-  local wallpaper="$1"
-  echo "Setting wallpaper..."
-  ln -fs "$wallpaper" "$CURRENT_WALLPAPER"
-  hyprctl -q hyprpaper reload ",${CURRENT_WALLPAPER}"
-}
-
-# Select the wallpaper via yazi which has an image preview
-# in terminals that support image protocols (e.g. kitty, wezterm)
-select_wallpaper() {
-  yazi --chooser-file "$YAZI_SELECTION" "$WALLPAPER_DIR" || exit 1
-  cat "$YAZI_SELECTION"
-}
 
 # Cleanup the selection file on exit
 cleanup_selection() {
   echo "Cleaning up selection file..."
   rm -f "$YAZI_SELECTION"
 }
-
 trap cleanup_selection EXIT
 
-check_dependencies hyprctl hyprpaper yazi
+yazi --chooser-file "$YAZI_SELECTION" "$WALLPAPER_DIR" || exit 1
+wallpaper=$(cat "$YAZI_SELECTION") || exit 1
 
-wallpaper=$(select_wallpaper) || exit 1
-set_wallpaper "$wallpaper"
+echo "Setting wallpaper..."
+ln -fs "$wallpaper" "$CURRENT_WALLPAPER"
+hyprctl -q hyprpaper reload ",${CURRENT_WALLPAPER}"
