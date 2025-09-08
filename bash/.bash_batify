@@ -1,0 +1,5 @@
+#!/bin/bash
+
+man() {
+  /usr/bin/man "$@" | bat -l man -p
+}

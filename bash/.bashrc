@@ -50,3 +50,4 @@ function y() {
 # source alias and function definitions
 . "$HOME/.bash_aliases"
 . "$HOME/.bash_functions"
+. "/home/andi/.bash_batify"
