@@ -1,13 +1,13 @@
 #!/bin/bash
 
 set -euo pipefail
-source "$HOME/.bash_functions"
+source $HOME/.bash_functions
+
+check_dependencies gallery-dl uv yazi fzf || exit 1
 
 DATA_DIR="/mnt/data"
 DOWNLOADS_FILE="$DATA_DIR/gallery-downloads.txt"
 NEWEST_IMAGES_DIR="$DATA_DIR/gallery-dl/newest_images"
-
-check_dependencies gallery-dl uv yazi fzf || exit 1
 
 cd "$DATA_DIR"
 

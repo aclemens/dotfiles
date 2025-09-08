@@ -3,7 +3,7 @@
 set -euo pipefail
 source $HOME/.bash_functions
 
-check_dependencies hyprctl hyprpaper yazi
+check_dependencies hyprctl hyprpaper yazi || exit 1
 
 WALLPAPER_DIR="$HOME/Pictures/wallpapers"
 CURRENT_WALLPAPER="$WALLPAPER_DIR/current_wallpaper"
