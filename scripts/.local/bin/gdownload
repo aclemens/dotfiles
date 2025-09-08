@@ -11,6 +11,7 @@ NEWEST_IMAGES_DIR="$DATA_DIR/gallery-dl/newest_images"
 function download() {
   cd "$DATA_DIR"
   mapfile -t sources < <(
+    # filter out comments and empty lines and sort uniquely
     grep -Ev '^\s*#|^\s*$' "$DOWNLOADS_FILE" | sort -u |
       fzf \
         --header "Sources" \
