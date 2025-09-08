@@ -7,10 +7,11 @@ DATA_DIR="/mnt/data"
 DOWNLOADS_FILE="$DATA_DIR/gallery-downloads.txt"
 NEWEST_IMAGES_DIR="$DATA_DIR/gallery-dl/newest_images"
 
-# Downloads gallery items listed in gallery-downloads.txt
-function download() {
+# read sources from gallery-downloads.txt using fzf for selection
+function get_sources() {
+  local -n ref=$1
   cd "$DATA_DIR"
-  mapfile -t sources < <(
+  mapfile -t ref < <(
     # filter out comments and empty lines and sort uniquely
     grep -Ev '^\s*#|^\s*$' "$DOWNLOADS_FILE" | sort -u |
       fzf \
@@ -23,6 +24,13 @@ function download() {
         --multi \
         --bind ctrl-a:select-all,ctrl-d:deselect-all
   )
+}
+
+# downloads gallery items
+function download() {
+  cd "$DATA_DIR"
+  declare -a sources
+  get_sources sources
   if [ ${#sources[@]} -eq 0 ]; then
     echo "No sources selected. Exiting."
     exit 0
