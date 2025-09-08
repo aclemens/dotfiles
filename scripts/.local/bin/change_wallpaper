@@ -8,7 +8,7 @@ CURRENT_WALLPAPER="$WALLPAPER_DIR/current_wallpaper"
 YAZI_SELECTION="$HOME/Pictures/wallpapers/selected"
 
 # Set the wallpaper using hyprpaper
-function set_wallpaper() {
+set_wallpaper() {
   local wallpaper="$1"
   echo "Setting wallpaper..."
   ln -fs "$wallpaper" "$CURRENT_WALLPAPER"
@@ -17,13 +17,13 @@ function set_wallpaper() {
 
 # Select the wallpaper via yazi which has an image preview
 # in terminals that support image protocols (e.g. kitty, wezterm)
-function select_wallpaper() {
+select_wallpaper() {
   yazi --chooser-file "$YAZI_SELECTION" "$WALLPAPER_DIR" || exit 1
   cat "$YAZI_SELECTION"
 }
 
 # Cleanup the selection file on exit
-function cleanup_selection() {
+cleanup_selection() {
   echo "Cleaning up selection file..."
   rm -f "$YAZI_SELECTION"
 }

@@ -8,7 +8,7 @@ DOWNLOADS_FILE="$DATA_DIR/gallery-downloads.txt"
 NEWEST_IMAGES_DIR="$DATA_DIR/gallery-dl/newest_images"
 
 # read sources from gallery-downloads.txt using fzf for selection
-function get_sources() {
+get_sources() {
   local -n ref=$1
   cd "$DATA_DIR"
   mapfile -t ref < <(
@@ -27,7 +27,7 @@ function get_sources() {
 }
 
 # downloads gallery items
-function download() {
+download() {
   cd "$DATA_DIR"
   declare -a sources
   get_sources sources
@@ -40,7 +40,7 @@ function download() {
 }
 
 # runs uv tasks to collect newest images, and optionally opens them in yazi
-function regenerate_images_links() {
+regenerate_images_links() {
   cd "$NEWEST_IMAGES_DIR"
   uv run newest_images clean
   uv run newest_images find ..
