@@ -47,6 +47,13 @@ check_dependencies() {
   echo "Install the missing dependencies and retry." && return 1
 }
 
-man() {
-  /usr/bin/man "$@" | bat -l man -p
+# checks for presence of paths (provided as a list of arguments).
+check_paths() {
+  local paths="$@"
+  for path in $paths; do
+    if [ ! -e "$path" ]; then
+      echo "Directory $path does not exist. Exiting."
+      return 1
+    fi
+  done
 }
