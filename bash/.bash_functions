@@ -52,7 +52,7 @@ check_paths() {
   local paths="$@"
   for path in $paths; do
     if [ ! -e "$path" ]; then
-      echo "Directory $path does not exist. Exiting."
+      echo "Directory $path does not exist."
       return 1
     fi
   done

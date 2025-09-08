@@ -8,7 +8,7 @@ DOWNLOADS_FILE="$DATA_DIR/gallery-downloads.txt"
 NEWEST_IMAGES_DIR="$DATA_DIR/gallery-dl/newest_images"
 
 check_paths "$DATA_DIR" "$NEWEST_IMAGES_DIR" "$DOWNLOADS_FILE"
-check_dependencies gallery-dl uv yazi fzf || exit 1
+check_dependencies gallery-dl uv yazi fzf
 
 cd "$DATA_DIR"
 

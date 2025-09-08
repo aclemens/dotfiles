@@ -3,11 +3,12 @@
 set -euo pipefail
 source $HOME/.bash_functions
 
-check_dependencies hyprctl hyprpaper yazi || exit 1
-
 WALLPAPER_DIR="$HOME/Pictures/wallpapers"
 CURRENT_WALLPAPER="$WALLPAPER_DIR/current_wallpaper"
 YAZI_SELECTION="$HOME/Pictures/wallpapers/selected"
+
+check_dependencies hyprctl hyprpaper yazi
+check_paths "$WALLPAPER_DIR"
 
 # Cleanup the selection file on exit
 cleanup_selection() {
