@@ -12,9 +12,9 @@ check_dependencies gallery-dl uv yazi fzf
 
 cd "$DATA_DIR"
 
-# read sources from gallery-downloads.txt using fzf for selection
+# read sources from $DOWNLOADS_FILE using fzf multi selection
 mapfile -t sources < <(
-  # filter out comments and empty lines and sort uniquely
+  # filter out commented and empty lines and sort uniquely
   grep -Ev '^\s*#|^\s*$' "$DOWNLOADS_FILE" | sort -u |
     fzf \
       --header "Sources" \
