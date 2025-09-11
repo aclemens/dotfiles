@@ -17,9 +17,23 @@ cleanup_selection() {
 }
 trap cleanup_selection EXIT
 
-yazi --chooser-file "$YAZI_SELECTION" "$WALLPAPER_DIR" || exit 1
-wallpaper=$(cat "$YAZI_SELECTION") || exit 1
+selected_wallpaper=""
+start_dir="$WALLPAPER_DIR"
 
-echo "Setting wallpaper..."
-ln -fs "$wallpaper" "$CURRENT_WALLPAPER"
+# check if a parameter is given, if so check if it's a valid file or if it's a valid directory
+if [ $# -eq 1 ]; then
+  if [ -f "$1" ]; then
+    selected_wallpaper="$1"
+  elif [ -d "$1" ]; then
+    start_dir="$1"
+  fi
+fi
+
+if [ -z "$selected_wallpaper" ]; then
+  yazi --chooser-file "$YAZI_SELECTION" "$start_dir" || exit 1
+  selected_wallpaper=$(cat "$YAZI_SELECTION") || exit 1
+fi
+
+echo "Setting wallpaper to $selected_wallpaper"
+ln -fs "$selected_wallpaper" "$CURRENT_WALLPAPER"
 hyprctl -q hyprpaper reload ",${CURRENT_WALLPAPER}"
