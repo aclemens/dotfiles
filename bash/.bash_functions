@@ -38,8 +38,9 @@ check_dependencies() {
   if gum confirm "Attempt to install missing dependencies now?"; then
     # detect pacman
     if command -v pacman >/dev/null 2>&1; then
-      log "Attempting to install missing packages with pacman..."
-      sudo pacman -S --needed --noconfirm "${missing[@]}" || err "pacman failed to install packages. Please install them manually."
+      echo "Attempting to install missing packages with pacman..."
+      sudo pacman -S --needed --noconfirm "${missing[@]}" || echo "pacman failed to install packages. Please install them manually."
+      exit 0
     else
       echo "No supported package manager detected. Install: ${missing[*]}" && return 1
     fi
@@ -52,7 +53,7 @@ check_paths() {
   local paths="$@"
   for path in $paths; do
     if [ ! -e "$path" ]; then
-      echo "Directory $path does not exist."
+      echo "$path does not exist."
       return 1
     fi
   done
