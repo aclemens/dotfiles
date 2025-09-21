@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -euo pipefail
-source $HOME/.bash_functions
+source "$HOME/.bash_functions"
 
 DATA_DIR="/mnt/data"
 DOWNLOADS_FILE="$DATA_DIR/gallery-downloads.txt"
