@@ -19,7 +19,7 @@ check_dependencies() {
   fi
 
   # if no dependencies provided, return
-  if [ -z "$dependencies" ]; then
+  if [ ${#dependencies[@]} -eq 0 ]; then
     return 0
   fi
 
@@ -50,8 +50,8 @@ check_dependencies() {
 
 # checks for presence of paths (provided as a list of arguments).
 check_paths() {
-  local paths="$@"
-  for path in $paths; do
+  local paths=("$@")
+  for path in "${paths[@]}"; do
     if [ ! -e "$path" ]; then
       echo "$path does not exist."
       return 1
