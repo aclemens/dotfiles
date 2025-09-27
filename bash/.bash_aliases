@@ -39,4 +39,5 @@ alias gst='git status'
 alias yayif='yay -Slq | sort -u | fzf --multi --preview "yay -Si {1}" | xargs -ro yay -Sy'
 alias yayrf='yay -Qeq | sort -u | fzf --multi --preview "yay -Qi {1}" | xargs -ro yay -Rscn'
 alias yayd='yay -Syuw'
+alias yayc='yay -Qdtq | xargs -ro yay -Rscn'
 #####################
