@@ -26,6 +26,7 @@ alias yd='yt-dlp --embed-chapters -t mp4'
 alias tsc='sudo timeshift --snapshot-device /dev/sda3 --create'
 alias tsl='sudo timeshift --snapshot-device /dev/sda3 --list'
 alias tsr='sudo timeshift --snapshot-device /dev/sda3 --restore'
+alias tsd='sudo timeshift --snapshot-device /dev/sda3 --delete'
 
 # docker aliases
 alias dirm='docker image ls --format "{{.Repository}}:{{.Tag}} {{.ID}}" | fzf --multi | awk "{print \$2}" | xargs -t -r docker image rm'
