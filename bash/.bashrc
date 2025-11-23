@@ -51,3 +51,8 @@ function y() {
 . "$HOME/.bash_aliases"
 . "$HOME/.bash_functions"
 . "/home/andi/.bash_batify"
+
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)
+export PATH="/home/andi/.local/bin:/usr/local/bin:/usr/bin:/home/andi/.dotnet/tools"
