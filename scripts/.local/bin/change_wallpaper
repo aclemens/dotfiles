@@ -44,6 +44,8 @@ if [ -z "$selected_wallpaper" ]; then
                               -f {}") || exit 1
 fi
 
+# set selected_wallpaper to absolute path
+selected_wallpaper=$(realpath "$selected_wallpaper")
 echo "Setting wallpaper to $selected_wallpaper"
 ln -fs "$selected_wallpaper" "$CURRENT_WALLPAPER"
 hyprctl -q hyprpaper reload ",${CURRENT_WALLPAPER}"
