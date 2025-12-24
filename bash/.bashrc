@@ -56,3 +56,5 @@ function y() {
 # Load Angular CLI autocompletion.
 source <(ng completion script)
 export PATH="/home/andi/.local/bin:/usr/local/bin:/usr/bin:/home/andi/.dotnet/tools"
+. "$HOME/.config/godotenv/env" # Added by GodotEnv
+
