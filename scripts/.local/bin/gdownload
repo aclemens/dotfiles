@@ -5,10 +5,9 @@ source "$HOME/.bash_functions"
 
 DATA_DIR="/mnt/data"
 DOWNLOADS_FILE="$DATA_DIR/gallery-downloads.txt"
-NEWEST_IMAGES_DIR="$DATA_DIR/gallery-dl/newest_images"
 
-check_paths "$DATA_DIR" "$NEWEST_IMAGES_DIR" "$DOWNLOADS_FILE"
-check_dependencies gallery-dl uv yazi fzf
+check_paths "$DATA_DIR" "$DOWNLOADS_FILE"
+check_dependencies gallery-dl fzf
 
 cd "$DATA_DIR"
 
@@ -33,12 +32,3 @@ if [ ${#sources[@]} -eq 0 ]; then
 fi
 
 gallery-dl "${sources[@]}" || true
-
-cd "$NEWEST_IMAGES_DIR"
-
-uv run newest_images clean
-uv run newest_images find ..
-
-if gum confirm "Do you want to open yazi for viewing images now?"; then
-  yazi "$NEWEST_IMAGES_DIR/images"
-fi
