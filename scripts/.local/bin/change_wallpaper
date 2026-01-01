@@ -3,6 +3,7 @@
 set -euo pipefail
 source "$HOME/.bash_functions"
 
+MONITORS="eDP-1"
 WALLPAPER_DIR="$HOME/Pictures/wallpapers"
 CURRENT_WALLPAPER="$WALLPAPER_DIR/current_wallpaper"
 UEBERZUG_TMP_DIR="/tmp"
@@ -48,6 +49,6 @@ fi
 selected_wallpaper=$(realpath "$selected_wallpaper")
 echo "Setting wallpaper to $selected_wallpaper"
 ln -fs "$selected_wallpaper" "$CURRENT_WALLPAPER"
-hyprctl -q hyprpaper reload ",${CURRENT_WALLPAPER}"
+hyprctl -q hyprpaper wallpaper "${MONITORS},${CURRENT_WALLPAPER}"
 
 cleanup
