@@ -82,7 +82,7 @@ keymap = [
 	{ on = ["s", "s"],  run = "search --via=fd --args='-HI'",desc = "Search files by name via fd" },
 	{ on = ["s", "f"],  run = "search --via=fd --args='-HItf'",desc = "Search only files by name via fd" },
 	{ on = ["s", "d"],  run = "search --via=fd --args='-HItd'",desc = "Search only directories by name via fd" },
-	{ on = ["s", "e"],  run = "search --via=fd --args='-HI -e'",desc = "Search only directories by name via fd" },
+	{ on = ["s", "e"],  run = "search --via=fd --args='-HI -e'",desc = "Search only files by extension via fd" },
 	{ on = "S",         run = "search --via=rg",             desc = "Search files by content via ripgrep" },
 	{ on = "<C-s>",     run = "escape --search",             desc = "Cancel the ongoing search" },
 	{ on = "z",         run = "plugin zoxide",               desc = "Jump to a directory via zoxide" },
