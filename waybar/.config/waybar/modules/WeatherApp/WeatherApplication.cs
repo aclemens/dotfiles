@@ -22,7 +22,7 @@ public class WeatherApplication
             _settings.TextFormat
         );
 
-        // Tooltip: jede Location separat wie im Python-Skript
+        // Tooltip: jede Location separat anfragen wie wttr.in es erwartet
         var tooltipTasks = _settings.TooltipLocations.Select(location =>
             _weatherService.GetWeatherAsync(new[] { location }, "%l:%c%t+(%C)")
         );

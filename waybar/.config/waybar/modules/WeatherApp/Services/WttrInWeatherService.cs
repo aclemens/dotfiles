@@ -13,7 +13,7 @@ public class WttrInWeatherService : IWeatherService
     {
         var locationStr = string.Join(",", locations);
         var formatStr = string.IsNullOrEmpty(format) ? "" : $"?format={format}";
-        var url = $"{{{locationStr}}}{formatStr}";
+        var url = $"{locationStr}{formatStr}";
 
         var response = await _httpClient.GetStringAsync(url);
         return response.Trim();
