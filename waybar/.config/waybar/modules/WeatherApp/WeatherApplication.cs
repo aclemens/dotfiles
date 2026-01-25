@@ -17,18 +17,23 @@ public class WeatherApplication
 
     public async Task<string> RunAsync()
     {
-        var text = await _weatherService.GetWeatherAsync(new[] { _settings.TextLocation }, _settings.TextFormat);
-        var tooltip = await _weatherService.GetWeatherAsync(_settings.TooltipLocations, _settings.TooltipFormat);
+        var text = await _weatherService.GetWeatherAsync(
+            new[] { _settings.TextLocation },
+            _settings.TextFormat
+        );
 
-        var result = new WeatherResult
-        {
-            Text = text,
-            Tooltip = tooltip
-        };
+        // Tooltip: jede Location separat wie im Python-Skript
+        var tooltipTasks = _settings.TooltipLocations.Select(location =>
+            _weatherService.GetWeatherAsync(new[] { location }, "%l:%c%t+(%C)")
+        );
+        var tooltipResults = await Task.WhenAll(tooltipTasks);
+        var tooltip = string.Join("\n", tooltipResults);
 
-        return JsonSerializer.Serialize(result, new JsonSerializerOptions
-        {
-            WriteIndented = false
-        });
+        var result = new WeatherResult { text = text, tooltip = tooltip };
+
+        return JsonSerializer.Serialize(
+            result,
+            new JsonSerializerOptions { WriteIndented = false }
+        );
     }
 }
