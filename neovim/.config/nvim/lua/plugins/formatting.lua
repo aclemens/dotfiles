@@ -9,6 +9,7 @@ return {
         htmlangular = { "prettier" },
         bash = { "shfmt" },
         css = { "prettier" },
+        csharp = { "csharpier" },
         go = { "gofmt" },
         graphql = { "prettier" },
         html = { "prettier" },
