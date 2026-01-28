@@ -1,8 +1,6 @@
-using Microsoft.Extensions.DependencyInjection;
 using Moq;
 using Moq.Protected;
 using System.Net;
-using System.Net.Http;
 using System.Text;
 using WeatherApp.Services;
 
@@ -28,16 +26,30 @@ public class WttrInWeatherServiceTests
     public async Task GetWeatherAsync_SingleLocation_ReturnsWeatherData()
     {
         // Arrange
-        var expectedResponse = "20°C";
+        var jsonResponse = @"{
+            ""current_condition"": [
+                {
+                    ""temp_C"": ""20"",
+                    ""weatherDesc"": [{""value"": ""Clear""}]
+                }
+            ],
+            ""nearest_area"": [
+                {
+                    ""areaName"": [{""value"": ""Bensheim""}]
+                }
+            ]
+        }";
         var locations = new[] { "Bensheim" };
 
-        SetupHttpResponse(expectedResponse);
+        SetupHttpResponse(jsonResponse);
 
         // Act
         var result = await _sut.GetWeatherAsync(locations);
 
         // Assert
-        Assert.Equal(expectedResponse, result);
+        Assert.Equal("Bensheim", result.Location);
+        Assert.Equal("20°C", result.Temperature);
+        Assert.Equal("Clear", result.Condition);
 
         _mockHttpMessageHandler.Protected().Verify(
             "SendAsync",
@@ -51,86 +63,153 @@ public class WttrInWeatherServiceTests
     public async Task GetWeatherAsync_MultipleLocations_ReturnsWeatherData()
     {
         // Arrange
-        var expectedResponse = "15°C";
+        var jsonResponse = @"{
+            ""current_condition"": [
+                {
+                    ""temp_C"": ""15"",
+                    ""weatherDesc"": [{""value"": ""Cloudy""}]
+                }
+            ],
+            ""nearest_area"": [
+                {
+                    ""areaName"": [{""value"": ""Bensheim,Frankfurt,Windesheim""}]
+                }
+            ]
+        }";
         var locations = new[] { "Bensheim", "Frankfurt", "Windesheim" };
 
-        SetupHttpResponse(expectedResponse);
+        SetupHttpResponse(jsonResponse);
 
         // Act
         var result = await _sut.GetWeatherAsync(locations);
 
         // Assert
-        Assert.Equal(expectedResponse, result);
+        Assert.Equal("Bensheim,Frankfurt,Windesheim", result.Location);
+        Assert.Equal("15°C", result.Temperature);
+        Assert.Equal("Cloudy", result.Condition);
     }
 
     [Fact]
-    public async Task GetWeatherAsync_WithFormat_ReturnsFormattedWeatherData()
+    public async Task GetWeatherAsync_WithFormat_ReturnsWeatherData()
     {
         // Arrange
-        var expectedResponse = "+20°C+☀️";
+        var jsonResponse = @"{
+            ""current_condition"": [
+                {
+                    ""temp_C"": ""20"",
+                    ""weatherDesc"": [{""value"": ""Sunny""}]
+                }
+            ],
+            ""nearest_area"": [
+                {
+                    ""areaName"": [{""value"": ""Bensheim""}]
+                }
+            ]
+        }";
         var locations = new[] { "Bensheim" };
-        var format = "%t+%C";
-
-        SetupHttpResponse(expectedResponse);
+        SetupHttpResponse(jsonResponse);
 
         // Act
-        var result = await _sut.GetWeatherAsync(locations, format);
+        var result = await _sut.GetWeatherAsync(locations);
 
         // Assert
-        Assert.Equal(expectedResponse, result);
+        Assert.Equal("Bensheim", result.Location);
+        Assert.Equal("20°C", result.Temperature);
+        Assert.Equal("Sunny", result.Condition);
     }
 
     [Fact]
     public async Task GetWeatherAsync_WithNullFormat_ReturnsWeatherData()
     {
         // Arrange
-        var expectedResponse = "Weather report";
+        var jsonResponse = @"{
+            ""current_condition"": [
+                {
+                    ""temp_C"": ""18"",
+                    ""weatherDesc"": [{""value"": ""Partly Cloudy""}]
+                }
+            ],
+            ""nearest_area"": [
+                {
+                    ""areaName"": [{""value"": ""Bensheim""}]
+                }
+            ]
+        }";
         var locations = new[] { "Bensheim" };
 
-        SetupHttpResponse(expectedResponse);
+        SetupHttpResponse(jsonResponse);
 
         // Act
-        var result = await _sut.GetWeatherAsync(locations, null);
+        var result = await _sut.GetWeatherAsync(locations);
 
         // Assert
-        Assert.Equal(expectedResponse, result);
+        Assert.Equal("Bensheim", result.Location);
+        Assert.Equal("18°C", result.Temperature);
+        Assert.Equal("Partly Cloudy", result.Condition);
     }
 
     [Fact]
     public async Task GetWeatherAsync_WithEmptyFormat_ReturnsWeatherData()
     {
         // Arrange
-        var expectedResponse = "Weather report";
+        var jsonResponse = @"{
+            ""current_condition"": [
+                {
+                    ""temp_C"": ""22"",
+                    ""weatherDesc"": [{""value"": ""Clear""}]
+                }
+            ],
+            ""nearest_area"": [
+                {
+                    ""areaName"": [{""value"": ""Bensheim""}]
+                }
+            ]
+        }";
         var locations = new[] { "Bensheim" };
 
-        SetupHttpResponse(expectedResponse);
+        SetupHttpResponse(jsonResponse);
 
         // Act
-        var result = await _sut.GetWeatherAsync(locations, "");
-
+        var result = await _sut.GetWeatherAsync(locations);
 
         // Assert
-        Assert.Equal(expectedResponse, result);
+        Assert.Equal("Bensheim", result.Location);
+        Assert.Equal("22°C", result.Temperature);
+        Assert.Equal("Clear", result.Condition);
     }
 
     [Fact]
     public async Task GetWeatherAsync_EmptyLocations_ReturnsWeatherData()
     {
         // Arrange
-        var expectedResponse = "Test";
+        var jsonResponse = @"{
+            ""current_condition"": [
+                {
+                    ""temp_C"": ""19"",
+                    ""weatherDesc"": [{""value"": ""Overcast""}]
+                }
+            ],
+            ""nearest_area"": [
+                {
+                    ""areaName"": [{""value"": ""Unknown""}]
+                }
+            ]
+        }";
         var locations = Array.Empty<string>();
 
-        SetupHttpResponse(expectedResponse);
+        SetupHttpResponse(jsonResponse);
 
         // Act
         var result = await _sut.GetWeatherAsync(locations);
 
         // Assert
-        Assert.Equal(expectedResponse, result);
+        Assert.Equal("Unknown", result.Location);
+        Assert.Equal("19°C", result.Temperature);
+        Assert.Equal("Overcast", result.Condition);
     }
 
     [Fact]
-    public async Task GetWeatherAsync_HttpRequestThrowsException_PropagatesException()
+    public async Task GetWeatherAsync_HttpRequestThrowsException_ReturnsErrorWeatherData()
     {
         // Arrange
         var locations = new[] { "Bensheim" };
@@ -143,16 +222,56 @@ public class WttrInWeatherServiceTests
             )
             .ThrowsAsync(new HttpRequestException("Network error"));
 
-        // Act & Assert
-        await Assert.ThrowsAsync<HttpRequestException>(() =>
-            _sut.GetWeatherAsync(locations));
+        // Act
+        var result = await _sut.GetWeatherAsync(locations);
+
+        // Assert
+        Assert.Equal("Network Error", result.Location);
+        Assert.Equal("N/A", result.Temperature);
+        Assert.Equal("Failed to fetch weather", result.Condition);
+    }
+
+    [Fact]
+    public async Task GetWeatherAsync_InvalidJson_ReturnsErrorWeatherData()
+    {
+        // Arrange
+        var invalidJson = "{ invalid json }";
+        var locations = new[] { "Bensheim" };
+
+        SetupHttpResponse(invalidJson);
+
+        // Act
+        var result = await _sut.GetWeatherAsync(locations);
+
+        // Assert
+        Assert.Equal("Invalid JSON", result.Location);
+        Assert.Equal("N/A", result.Temperature);
+        Assert.Equal("Failed to fetch weather", result.Condition);
+    }
+
+    [Fact]
+    public async Task GetWeatherAsync_MissingRequiredFields_ReturnsErrorWeatherData()
+    {
+        // Arrange
+        var incompleteJson = "{\"current_condition\": [], \"nearest_area\": []}";
+        var locations = new[] { "Bensheim" };
+
+        SetupHttpResponse(incompleteJson);
+
+        // Act
+        var result = await _sut.GetWeatherAsync(locations);
+
+        // Assert
+        Assert.Equal("Invalid Data", result.Location);
+        Assert.Equal("N/A", result.Temperature);
+        Assert.Equal("Failed to fetch weather", result.Condition);
     }
 
     private void SetupHttpResponse(string responseContent)
     {
         var response = new HttpResponseMessage(HttpStatusCode.OK)
         {
-            Content = new StringContent(responseContent, Encoding.UTF8, "text/plain")
+            Content = new StringContent(responseContent, Encoding.UTF8, "application/json")
         };
 
         _mockHttpMessageHandler.Protected()
