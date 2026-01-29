@@ -4,6 +4,7 @@ using Microsoft.Extensions.Options;
 using WeatherApp;
 using WeatherApp.Models;
 using WeatherApp.Services;
+using WeatherApp.Formatters;
 
 var host = Host.CreateDefaultBuilder(args)
     .ConfigureServices(
@@ -15,6 +16,7 @@ var host = Host.CreateDefaultBuilder(args)
             services.Configure<WeatherSettings>(
                 context.Configuration.GetSection("WeatherSettings")
             );
+            services.AddSingleton<IWeatherDataFormatter, ShortWeatherDataFormatter>();
             services.AddSingleton(sp => sp.GetRequiredService<IOptions<WeatherSettings>>().Value);
             services.AddTransient<WeatherApplication>();
         }

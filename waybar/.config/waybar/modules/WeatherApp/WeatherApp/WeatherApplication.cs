@@ -1,6 +1,7 @@
 using System.Text.Json;
 using WeatherApp.Models;
 using WeatherApp.Services;
+using WeatherApp.Formatters;
 
 namespace WeatherApp;
 
@@ -8,11 +9,13 @@ public class WeatherApplication
 {
     private readonly IWeatherService _weatherService;
     private readonly WeatherSettings _settings;
+    private readonly IWeatherDataFormatter _formatter;
 
-    public WeatherApplication(IWeatherService weatherService, WeatherSettings settings)
+    public WeatherApplication(IWeatherService weatherService, WeatherSettings settings, IWeatherDataFormatter formatter)
     {
         _weatherService = weatherService;
         _settings = settings;
+        _formatter = formatter;
     }
 
     public async Task<string> RunAsync()
@@ -22,14 +25,14 @@ public class WeatherApplication
         );
 
         // Format text from WeatherData
-        var text = FormatWeatherData(weatherData);
+        var text = _formatter.FormatText(weatherData);
 
         // Tooltip: jede Location separat anfragen wie wttr.in es erwartet
         var tooltipTasks = _settings.TooltipLocations.Select(location =>
             _weatherService.GetWeatherAsync(new[] { location })
         );
         var tooltipResults = await Task.WhenAll(tooltipTasks);
-        var tooltip = string.Join("\n", tooltipResults.Select(data => FormatWeatherData(data)));
+        var tooltip = string.Join("\n", tooltipResults.Select(data => _formatter.FormatTooltip(data)));
 
         var result = new WeatherResult { text = text, tooltip = tooltip };
 
@@ -37,10 +40,5 @@ public class WeatherApplication
             result,
             new JsonSerializerOptions { WriteIndented = false }
         );
-    }
-
-    private string FormatWeatherData(WeatherData data)
-    {
-        return $"{data.Location}: {data.Temperature} ({data.Condition})";
     }
 }
