@@ -13,6 +13,11 @@ public class WttrInWeatherService : IWeatherService
         _httpClient = httpClient;
     }
 
+    /// <summary>
+    /// Fetches weather data for the specified locations from the wttr.in API.
+    /// </summary>
+    /// <param name="locations">A collection of location names.</param>
+    /// <returns>A WeatherData object containing the weather information.</returns>
     public async Task<WeatherData> GetWeatherAsync(IEnumerable<string> locations)
     {
         try

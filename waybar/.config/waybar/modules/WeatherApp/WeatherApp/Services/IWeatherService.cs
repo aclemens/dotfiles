@@ -8,6 +8,6 @@ public interface IWeatherService
     /// Retrieves weather data for the specified locations.
     /// </summary>
     /// <param name="locations">A collection of location names.</param>
-    /// <returns>A task that represents the asynchronous operation. The task result contains the weather data.</returns>
+    /// <returns>A WeatherData object containing the weather information.</returns>
     Task<WeatherData> GetWeatherAsync(IEnumerable<string> locations);
 }
