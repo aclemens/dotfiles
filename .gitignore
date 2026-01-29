@@ -4,3 +4,4 @@ hyprpaper/Pictures/wallpapers/**/*.jpg
 hyprpaper/Pictures/wallpapers/current_wallpaper
 bin
 obj
+waybar/.config/waybar/modules/weather
