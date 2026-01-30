@@ -1,6 +1,6 @@
-using WeatherApp.Models;
-
 namespace WeatherApp.Services;
+
+using WeatherApp.Models;
 
 public interface IWeatherService
 {
