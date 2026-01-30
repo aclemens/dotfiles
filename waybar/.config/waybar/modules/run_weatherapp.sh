@@ -7,7 +7,7 @@ PUBLISH_FOLDER="$HOME/.config/waybar/modules/weather"
 if [ ! -d "$PUBLISH_FOLDER" ]; then
   echo "Application not found. Compiling the WeatherApp..."
   cd "$SRC_FOLDER" || exit 1
-  dotnet publish --self-contained -o "$PUBLISH_FOLDER"
+  dotnet publish -o "$PUBLISH_FOLDER"
 fi
 
 cd "$PUBLISH_FOLDER" || exit 1
