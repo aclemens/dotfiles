@@ -2,9 +2,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using WeatherApp;
-using WeatherApp.Models;
-using WeatherApp.Services;
 using WeatherApp.Formatters;
+using WeatherApp.Models;
+using WeatherApp.Output;
+using WeatherApp.Services;
 
 var host = Host.CreateDefaultBuilder(args)
     .ConfigureServices(
@@ -17,6 +18,8 @@ var host = Host.CreateDefaultBuilder(args)
                 context.Configuration.GetSection("WeatherSettings")
             );
             services.AddSingleton<IWeatherDataFormatter, ShortWeatherDataFormatter>();
+            services.AddSingleton<IWeatherDataFallbackFormatter, DefaultWeatherDataFallbackFormatter>();
+            services.AddSingleton<IWeatherOutputBuilder, DefaultWeatherOutputBuilder>();
             services.AddSingleton(sp => sp.GetRequiredService<IOptions<WeatherSettings>>().Value);
             services.AddTransient<WeatherApplication>();
         }

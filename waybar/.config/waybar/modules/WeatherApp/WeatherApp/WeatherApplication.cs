@@ -1,7 +1,7 @@
 using System.Text.Json;
 using WeatherApp.Models;
+using WeatherApp.Output;
 using WeatherApp.Services;
-using WeatherApp.Formatters;
 
 namespace WeatherApp;
 
@@ -9,23 +9,43 @@ public class WeatherApplication
 {
     private readonly IWeatherService _weatherService;
     private readonly WeatherSettings _settings;
-    private readonly IWeatherDataFormatter _formatter;
+    private readonly IWeatherOutputBuilder _outputBuilder;
 
-    public WeatherApplication(IWeatherService weatherService, WeatherSettings settings, IWeatherDataFormatter formatter)
+    public WeatherApplication(
+        IWeatherService weatherService,
+        WeatherSettings settings,
+        IWeatherOutputBuilder outputBuilder
+    )
     {
         _weatherService = weatherService;
         _settings = settings;
-        _formatter = formatter;
+        _outputBuilder = outputBuilder;
     }
 
     public async Task<string> RunAsync()
     {
-        // merge weather locations for fetching
-        var locations = new HashSet<string>(_settings.TooltipLocations)
+        var locations = BuildLocations();
+        var weatherByLocation = await FetchWeatherAsync(locations);
+        var output = _outputBuilder.Build(_settings, weatherByLocation);
+
+        return JsonSerializer.Serialize(
+            new { output.Text, output.Tooltip },
+            new JsonSerializerOptions { WriteIndented = false }
+        );
+    }
+
+    private HashSet<string> BuildLocations()
+    {
+        return new HashSet<string>(_settings.TooltipLocations)
         {
             _settings.TextLocation
         };
+    }
 
+    private async Task<IReadOnlyDictionary<string, WeatherData?>> FetchWeatherAsync(
+        IEnumerable<string> locations
+    )
+    {
         var weatherTasks = locations.ToDictionary(
             location => location,
             _weatherService.GetWeatherAsync
@@ -33,32 +53,9 @@ public class WeatherApplication
 
         await Task.WhenAll(weatherTasks.Values);
 
-        var weatherByLocation = weatherTasks.ToDictionary(
+        return weatherTasks.ToDictionary(
             entry => entry.Key,
             entry => entry.Value.Result
-        );
-
-        var textData = weatherByLocation[_settings.TextLocation];
-        var text = textData is null
-            ? "N/A"
-            : _formatter.FormatText(textData);
-
-        var tooltip = string.Join(
-            "\n",
-            _settings.TooltipLocations.Select(
-                location =>
-                {
-                    var data = weatherByLocation[location];
-                    return data is null
-                        ? "N/A"
-                        : _formatter.FormatTooltip(data);
-                }
-            )
-        );
-
-        return JsonSerializer.Serialize(
-            new { text, tooltip },
-            new JsonSerializerOptions { WriteIndented = false }
         );
     }
 }
