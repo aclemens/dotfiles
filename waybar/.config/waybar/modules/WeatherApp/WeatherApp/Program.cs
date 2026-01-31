@@ -10,7 +10,7 @@ var host = Host.CreateDefaultBuilder(args)
     .ConfigureServices(
         (context, services) =>
         {
-            services.AddHttpClient<IWeatherService, TextWttrInWeatherService>(client =>
+            services.AddHttpClient<IWeatherService, WttrInWeatherService>(client =>
                 client.BaseAddress = new Uri("https://wttr.in/")
             );
             services.Configure<WeatherSettings>(

@@ -4,11 +4,11 @@ using WeatherApp.Models;
 
 namespace WeatherApp.Services;
 
-public class TextWttrInWeatherService : IWeatherService
+public class WttrInWeatherService : IWeatherService
 {
     private readonly HttpClient _httpClient;
 
-    public TextWttrInWeatherService(HttpClient httpClient)
+    public WttrInWeatherService(HttpClient httpClient)
     {
         _httpClient = httpClient;
     }
