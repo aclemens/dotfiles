@@ -1,100 +1,88 @@
-using Moq;
-using Moq.Protected;
 using System.Net;
-using System.Text;
 using WeatherApp.Services;
 
 namespace WeatherApp.Tests.Services;
 
 public class WttrInWeatherServiceTests
 {
-    private readonly Mock<HttpMessageHandler> _mockHttpMessageHandler;
-    private readonly HttpClient _httpClient;
-    private readonly WttrInWeatherService _sut;
-
-    public WttrInWeatherServiceTests()
+    private sealed class StubHttpMessageHandler : HttpMessageHandler
     {
-        _mockHttpMessageHandler = new Mock<HttpMessageHandler>();
-        _httpClient = new HttpClient(_mockHttpMessageHandler.Object)
+        private readonly Func<HttpRequestMessage, HttpResponseMessage> _handler;
+
+        public StubHttpMessageHandler(Func<HttpRequestMessage, HttpResponseMessage> handler)
         {
-            BaseAddress = new Uri("http://localhost")
-        };
-        _sut = new WttrInWeatherService(_httpClient);
+            _handler = handler;
+        }
+
+        protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+        {
+            return Task.FromResult(_handler(request));
+        }
     }
 
     [Fact]
-    public async Task GetWeatherAsync_Location_ReturnsWeatherData()
+    public async Task GetWeatherAsync_ReturnsWeatherData_OnValidResponse()
     {
-        // Arrange
-        var response = "+20°C|Clear";
-        var location = "Bensheim";
-        SetupHttpResponse(response);
+        var handler = new StubHttpMessageHandler(_ =>
+            new HttpResponseMessage(HttpStatusCode.OK)
+            {
+                Content = new StringContent("☀️+20°C|Sunny")
+            });
 
-        // Act
-        var result = await _sut.GetWeatherAsync(location);
+        var client = new HttpClient(handler) { BaseAddress = new Uri("http://example.com/") };
+        var service = new WttrInWeatherService(client);
 
-        // Assert
+        var result = await service.GetWeatherAsync("Paris");
+
         Assert.NotNull(result);
-        Assert.Equal("Bensheim", result.Location);
-        Assert.Equal("+20°C", result.Temperature);
-        Assert.Equal("Clear", result.Condition);
-
-        _mockHttpMessageHandler.Protected().Verify(
-            "SendAsync",
-            Times.Once(),
-            ItExpr.IsAny<HttpRequestMessage>(),
-            ItExpr.IsAny<CancellationToken>()
-        );
+        Assert.Equal("Paris", result!.Location);
+        Assert.Equal("☀️+20°C", result.Temperature);
+        Assert.Equal("Sunny", result.Condition);
     }
 
     [Fact]
-    public async Task GetWeatherAsync_EmptyResponse_ReturnsNull()
+    public async Task GetWeatherAsync_ReturnsNull_OnEmptyResponse()
     {
-        // Arrange
-        var location = "Bensheim";
-        SetupHttpResponse(string.Empty);
+        var handler = new StubHttpMessageHandler(_ =>
+            new HttpResponseMessage(HttpStatusCode.OK)
+            {
+                Content = new StringContent("")
+            });
 
-        // Act
-        var result = await _sut.GetWeatherAsync(location);
+        var client = new HttpClient(handler) { BaseAddress = new Uri("http://example.com/") };
+        var service = new WttrInWeatherService(client);
 
-        // Assert
+        var result = await service.GetWeatherAsync("Paris");
+
         Assert.Null(result);
     }
 
     [Fact]
-    public async Task GetWeatherAsync_HttpRequestThrowsException_ReturnsNull()
+    public async Task GetWeatherAsync_ReturnsNull_OnInvalidFormat()
     {
-        // Arrange
-        var location = "Bensheim";
+        var handler = new StubHttpMessageHandler(_ =>
+            new HttpResponseMessage(HttpStatusCode.OK)
+            {
+                Content = new StringContent("NoSeparatorHere")
+            });
 
-        _mockHttpMessageHandler.Protected()
-            .Setup<Task<HttpResponseMessage>>(
-                "SendAsync",
-                ItExpr.IsAny<HttpRequestMessage>(),
-                ItExpr.IsAny<CancellationToken>()
-            )
-            .ThrowsAsync(new HttpRequestException("Network error"));
+        var client = new HttpClient(handler) { BaseAddress = new Uri("http://example.com/") };
+        var service = new WttrInWeatherService(client);
 
-        // Act
-        var result = await _sut.GetWeatherAsync(location);
+        var result = await service.GetWeatherAsync("Paris");
 
-        // Assert
         Assert.Null(result);
     }
 
-    private void SetupHttpResponse(string responseContent)
+    [Fact]
+    public async Task GetWeatherAsync_ReturnsNull_OnHttpRequestException()
     {
-        var response = new HttpResponseMessage(HttpStatusCode.OK)
-        {
-            Content = new StringContent(responseContent, Encoding.UTF8, "text/plain")
-        };
+        var handler = new StubHttpMessageHandler(_ => throw new HttpRequestException("fail"));
+        var client = new HttpClient(handler) { BaseAddress = new Uri("http://example.com/") };
+        var service = new WttrInWeatherService(client);
 
-        _mockHttpMessageHandler.Protected()
-            .Setup<Task<HttpResponseMessage>>(
-                "SendAsync",
-                ItExpr.IsAny<HttpRequestMessage>(),
-                ItExpr.IsAny<CancellationToken>()
-            )
-            .ReturnsAsync(response);
+        var result = await service.GetWeatherAsync("Paris");
+
+        Assert.Null(result);
     }
 }
