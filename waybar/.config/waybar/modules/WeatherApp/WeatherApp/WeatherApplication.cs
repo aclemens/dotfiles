@@ -29,8 +29,12 @@ public class WeatherApplication
         var output = _outputBuilder.Build(_settings, weatherByLocation);
 
         return JsonSerializer.Serialize(
-            new { output.Text, output.Tooltip },
-            new JsonSerializerOptions { WriteIndented = false }
+            output,
+            new JsonSerializerOptions
+            {
+                WriteIndented = false,
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+            }
         );
     }
 
