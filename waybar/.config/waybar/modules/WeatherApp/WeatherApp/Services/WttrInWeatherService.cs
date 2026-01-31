@@ -49,9 +49,5 @@ public class WttrInWeatherService : IWeatherService
         {
             return null;
         }
-        catch (Exception)
-        {
-            return null;
-        }
     }
 }
