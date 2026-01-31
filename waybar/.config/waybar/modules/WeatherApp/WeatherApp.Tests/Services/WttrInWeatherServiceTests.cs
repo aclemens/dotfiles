@@ -10,7 +10,7 @@ public class WttrInWeatherServiceTests
 {
     private readonly Mock<HttpMessageHandler> _mockHttpMessageHandler;
     private readonly HttpClient _httpClient;
-    private readonly WttrInWeatherService _sut;
+    private readonly TextWttrInWeatherService _sut;
 
     public WttrInWeatherServiceTests()
     {
@@ -19,7 +19,7 @@ public class WttrInWeatherServiceTests
         {
             BaseAddress = new Uri("http://localhost")
         };
-        _sut = new WttrInWeatherService(_httpClient);
+        _sut = new JsonWttrInWeatherService(_httpClient);
     }
 
     [Fact]
