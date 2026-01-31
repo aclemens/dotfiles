@@ -47,10 +47,8 @@ public class WeatherApplication
             )
         );
 
-        var result = new WeatherResult { text = text, tooltip = tooltip };
-
         return JsonSerializer.Serialize(
-            result,
+            new { text, tooltip },
             new JsonSerializerOptions { WriteIndented = false }
         );
     }
