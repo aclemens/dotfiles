@@ -23,7 +23,7 @@ public class WttrInWeatherServiceTests
     }
 
     [Fact]
-    public async Task GetWeatherAsync_SingleLocation_ReturnsWeatherData()
+    public async Task GetWeatherAsync_Location_ReturnsWeatherData()
     {
         // Arrange
         var response = "+20°C|Clear";
@@ -34,6 +34,7 @@ public class WttrInWeatherServiceTests
         var result = await _sut.GetWeatherAsync(location);
 
         // Assert
+        Assert.NotNull(result);
         Assert.Equal("Bensheim", result.Location);
         Assert.Equal("+20°C", result.Temperature);
         Assert.Equal("Clear", result.Condition);
@@ -47,7 +48,7 @@ public class WttrInWeatherServiceTests
     }
 
     [Fact]
-    public async Task GetWeatherAsync_EmptyResponse_ReturnsErrorWeatherData()
+    public async Task GetWeatherAsync_EmptyResponse_ReturnsNull()
     {
         // Arrange
         var location = "Bensheim";
@@ -57,13 +58,11 @@ public class WttrInWeatherServiceTests
         var result = await _sut.GetWeatherAsync(location);
 
         // Assert
-        Assert.Equal("Invalid Data", result.Location);
-        Assert.Equal("N/A", result.Temperature);
-        Assert.Equal("Failed to fetch weather", result.Condition);
+        Assert.Null(result);
     }
 
     [Fact]
-    public async Task GetWeatherAsync_HttpRequestThrowsException_ReturnsErrorWeatherData()
+    public async Task GetWeatherAsync_HttpRequestThrowsException_ReturnsNull()
     {
         // Arrange
         var location = "Bensheim";
@@ -80,9 +79,7 @@ public class WttrInWeatherServiceTests
         var result = await _sut.GetWeatherAsync(location);
 
         // Assert
-        Assert.Equal("Network Error", result.Location);
-        Assert.Equal("N/A", result.Temperature);
-        Assert.Equal("Failed to fetch weather", result.Condition);
+        Assert.Null(result);
     }
 
     private void SetupHttpResponse(string responseContent)

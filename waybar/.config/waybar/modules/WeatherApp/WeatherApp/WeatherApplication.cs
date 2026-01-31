@@ -38,12 +38,21 @@ public class WeatherApplication
             entry => entry.Value.Result
         );
 
-        // Format text from WeatherData
-        var text = _formatter.FormatText(weatherByLocation[_settings.TextLocation]);
+        var textData = weatherByLocation[_settings.TextLocation];
+        var text = textData is null
+            ? "N/A"
+            : _formatter.FormatText(textData);
+
         var tooltip = string.Join(
             "\n",
             _settings.TooltipLocations.Select(
-                location => _formatter.FormatTooltip(weatherByLocation[location])
+                location =>
+                {
+                    var data = weatherByLocation[location];
+                    return data is null
+                        ? "N/A"
+                        : _formatter.FormatTooltip(data);
+                }
             )
         );
 

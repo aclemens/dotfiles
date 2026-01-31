@@ -17,8 +17,8 @@ public class WttrInWeatherService : IWeatherService
     /// Fetches weather data for the specified locations from the wttr.in API.
     /// </summary>
     /// <param name="location">the location to look the weather up for.</param>
-    /// <returns>A WeatherData object containing the weather information.</returns>
-    public async Task<WeatherData> GetWeatherAsync(string location)
+    /// <returns>A WeatherData object containing the weather information, or null when unavailable.</returns>
+    public async Task<WeatherData?> GetWeatherAsync(string location)
     {
         try
         {
@@ -27,13 +27,13 @@ public class WttrInWeatherService : IWeatherService
 
             if (string.IsNullOrWhiteSpace(response))
             {
-                throw new InvalidOperationException("Empty response from weather API");
+                return null;
             }
 
             var parts = response.Split('|', 2);
             if (parts.Length != 2)
             {
-                throw new InvalidOperationException("Unexpected response format");
+                return null;
             }
 
             var weatherData = new WeatherData
@@ -47,25 +47,11 @@ public class WttrInWeatherService : IWeatherService
         }
         catch (HttpRequestException)
         {
-            return CreateErrorWeatherData("Network Error");
-        }
-        catch (InvalidOperationException)
-        {
-            return CreateErrorWeatherData("Invalid Data");
+            return null;
         }
         catch (Exception)
         {
-            return CreateErrorWeatherData("Unexpected Error");
+            return null;
         }
-    }
-
-    private WeatherData CreateErrorWeatherData(string errorType)
-    {
-        return new WeatherData
-        {
-            Location = errorType,
-            Temperature = "N/A",
-            Condition = "Failed to fetch weather"
-        };
     }
 }
