@@ -16,14 +16,13 @@ public class WttrInWeatherService : IWeatherService
     /// <summary>
     /// Fetches weather data for the specified locations from the wttr.in API.
     /// </summary>
-    /// <param name="locations">A collection of location names.</param>
+    /// <param name="location">the location to look the weather up for.</param>
     /// <returns>A WeatherData object containing the weather information.</returns>
-    public async Task<WeatherData> GetWeatherAsync(IEnumerable<string> locations)
+    public async Task<WeatherData> GetWeatherAsync(string location)
     {
         try
         {
-            var locationStr = string.Join(",", locations);
-            var url = $"{locationStr}?format=j1";
+            var url = $"{location}?format=j1";
             var response = await _httpClient.GetStringAsync(url);
 
             if (string.IsNullOrWhiteSpace(response))

@@ -5,9 +5,9 @@ using WeatherApp.Models;
 public interface IWeatherService
 {
     /// <summary>
-    /// Retrieves weather data for the specified locations.
+    /// Fetches weather data for the specified locations from the wttr.in API.
     /// </summary>
-    /// <param name="locations">A collection of location names.</param>
+    /// <param name="location">the location to look the weather up for.</param>
     /// <returns>A WeatherData object containing the weather information.</returns>
-    Task<WeatherData> GetWeatherAsync(IEnumerable<string> locations);
+    Task<WeatherData> GetWeatherAsync(string location);
 }

@@ -20,19 +20,32 @@ public class WeatherApplication
 
     public async Task<string> RunAsync()
     {
-        var weatherData = await _weatherService.GetWeatherAsync(
-            new[] { _settings.TextLocation }
+        // merge weather locations for fetching
+        var locations = new HashSet<string>(_settings.TooltipLocations)
+        {
+            _settings.TextLocation
+        };
+
+        var weatherTasks = locations.ToDictionary(
+            location => location,
+            _weatherService.GetWeatherAsync
+        );
+
+        await Task.WhenAll(weatherTasks.Values);
+
+        var weatherByLocation = weatherTasks.ToDictionary(
+            entry => entry.Key,
+            entry => entry.Value.Result
         );
 
         // Format text from WeatherData
-        var text = _formatter.FormatText(weatherData);
-
-        // Tooltip: jede Location separat anfragen wie wttr.in es erwartet
-        var tooltipTasks = _settings.TooltipLocations.Select(location =>
-            _weatherService.GetWeatherAsync(new[] { location })
+        var text = _formatter.FormatText(weatherByLocation[_settings.TextLocation]);
+        var tooltip = string.Join(
+            "\n",
+            _settings.TooltipLocations.Select(
+                location => _formatter.FormatTooltip(weatherByLocation[location])
+            )
         );
-        var tooltipResults = await Task.WhenAll(tooltipTasks);
-        var tooltip = string.Join("\n", tooltipResults.Select(data => _formatter.FormatTooltip(data)));
 
         var result = new WeatherResult { text = text, tooltip = tooltip };
 
