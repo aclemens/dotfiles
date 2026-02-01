@@ -134,7 +134,8 @@
   },
   "custom/weather": {
     "format": "{}",
-    "interval": 300,
+    "interval": 1800,
+    // "interval": 300,
     "exec": "~/.config/waybar/modules/run_weatherapp.sh",
     // "exec": "python3 ~/.config/waybar/modules/weather.py",
     "return-type": "json",
